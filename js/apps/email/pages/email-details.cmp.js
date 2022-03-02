@@ -28,14 +28,6 @@ export default {
     unmounted() {
 
     },
-    watch: {
-        '$route.params.emailId': {
-            handler() {
-                this.loadEmail()
-            },
-            immediate: true,
-        }
-    },
     methods: {
         loadEmail() {
             const id = this.$route.params.emailId
