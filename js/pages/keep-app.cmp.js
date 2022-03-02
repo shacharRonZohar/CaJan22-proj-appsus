@@ -30,6 +30,10 @@ export default {
                 .then(notes => this.notes = notes)
         },
         deleteNote(id) {
+<<<<<<< HEAD
+            console.log(id)
+=======
+>>>>>>> c87b11d4ffc6968094e733585c521b509664fb56
             noteService.remove(id)
                 .then(this.updateNotes)
         }

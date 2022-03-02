@@ -10,7 +10,7 @@ export default {
                 <input v-model="newNote.info.txt" type="text" placeholder="Take a note...">
             </form>
             <button @click="addNote">Add note</button>
-            <pre>{{newNote}}</pre>
+            <!-- <pre>{{newNote}}</pre> -->
         </div>
     </section>
    `,
