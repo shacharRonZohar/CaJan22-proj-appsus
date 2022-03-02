@@ -15,7 +15,7 @@ export default {
         return {
             emails: null,
             criteria: {
-                status: 'inbox',
+                status: 'sent',
                 txt: 'puki', // no need to support complex text search 
                 isRead: true, // (optional property, if missing: show all) 
                 isStared: true, // (optional property, if missing: show all) 
