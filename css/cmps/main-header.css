@@ -1,0 +1,15 @@
+.main-header {
+    grid-row: 1 / span 3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-header .line {
+    width: 100vw;
+    position: absolute;
+    height: 1px;
+    border-bottom: 1px solid gray;
+    top: 73px;
+    left: 0;
+}

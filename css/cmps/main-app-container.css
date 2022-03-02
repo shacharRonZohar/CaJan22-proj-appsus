@@ -1,0 +1,5 @@
+.main-app-container {
+    display: grid;
+    grid-template: repeat(29, 1fr) / repeat(29, 1fr);
+    height: 100vh;
+}

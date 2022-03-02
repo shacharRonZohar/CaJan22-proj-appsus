@@ -6,7 +6,7 @@ Vue.createApp({
     template: `
         <section class="main-app-container">
             <app-header />
-            <router-view />
+            <router-view class="main-content main-layout"/>
             <app-footer />
         </section>
     `,

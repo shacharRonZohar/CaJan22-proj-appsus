@@ -6,7 +6,7 @@ export default {
     template: `
         <section class="keep-app">
             <note-list :notes="notes"></note-list>
-            <pre>{{notes}}</pre>
+            <!-- <pre>{{notes}}</pre> -->
         </section>
     `,
     components: {
@@ -27,7 +27,7 @@ export default {
                 .then(notes => this.notes = notes)
         },
         deleteNote(id) {
-            console.log(id);
+            console.log(id)
             noteService.remove(id)
                 .then(this.updateNotes)
         }
