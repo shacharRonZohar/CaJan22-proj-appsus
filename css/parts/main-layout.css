@@ -1,3 +1,4 @@
 .main-layout {
-    grid-column: 3 / span 25;
+    grid-column: 1 / span 27;
+    margin-left: 15px;
 }
