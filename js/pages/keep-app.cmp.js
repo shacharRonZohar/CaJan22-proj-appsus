@@ -7,7 +7,7 @@ export default {
             This is a keep page!<br>
             // note-filter <br>
             // note-list // note-preview
-            <note-list :notes></note-list>
+            <note-list :notes="notes"></note-list>
             <pre>{{notes}}</pre>
         </section>
     `,
