@@ -17,6 +17,11 @@ const loggedInUser = {
     fullName: 'Nestor Appsus'
 }
 
+const otherUser = {
+    email: 'momo@momo.com',
+    fullName: 'Mister Momo'
+}
+
 _createEmails()
 
 
@@ -56,13 +61,14 @@ function getEmptyEmail() {
         body: '',
         isRead: false,
         sentAt: null,
-        to: '',
+        to: {},
+        from: {},
         status: ''
     }
 }
 function _setStatus(email) {
     let status
-    if (email.to === loggedInUser.email) status = 'inbox'
+    if (email.to.email === loggedInUser.email) status = 'inbox'
     // else if (email.isDeleted) status = 'trash'
     // else if (!email.isComplete) status = 'draft'
     else status = 'sent'
@@ -79,14 +85,16 @@ function _createEmails() {
         email1.subject = 'Miss you!'
         email1.body = 'Would love to catch up sometimes'
         email1.isRead = false
-        email1.sentAt = 1551133930594
-        email1.to = 'user@appsus.com'
+        email1.sentAt = 1646229756255
+        email1.to = loggedInUser
+        email1.from = otherUser
         email1 = _setStatus(email1)
         email2.id = 'e102'
         email2.body = 'Would love to catch up sometimes2'
         email2.isRead = true
         email2.sentAt = 1551133953
-        email2.to = 'usesr@appsus.com'
+        email2.to = otherUser
+        email2.from = loggedInUser
         email2 = _setStatus(email2)
         emails = [email1, email2]
     }
