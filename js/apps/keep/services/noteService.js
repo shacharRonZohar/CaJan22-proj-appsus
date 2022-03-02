@@ -7,6 +7,8 @@ _createNotes()
 export const noteService = {
     query,
     remove,
+    addNote,
+    getEmptyNote
 }
 
 function query() {
@@ -21,9 +23,25 @@ function get(noteId) {
     return storageService.get(NOTES_KEY, noteId)
 }
 
-function addNote() { }
+function addNote(note) {
+    return storageService.post(NOTES_KEY, note)
+}
 
-function getEmptyNote() { }
+function getEmptyNote(noteType) {
+    if (noteType === 'note-txt'){
+        return {
+            type: 'note-txt',
+            isPinned: false,
+            info: {
+                txt: null,
+                title: 'Title'
+            },
+            style: {
+                backgroundColor: 'yellow'
+            }
+        }
+    }
+}
 
 function _createNotes() {
     let notes = utilService.load(NOTES_KEY)
