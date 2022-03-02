@@ -1,3 +1,4 @@
+import { utilService } from '../../../services/utilService.js'
 import { storageService } from "../../../services/asyncStorage.js"
 
 export const emailService = {
@@ -8,14 +9,15 @@ export const emailService = {
     remove,
     postMany,
 }
-
 const EMAIL_KEY = 'mailDB'
+
 
 const loggedInUser = {
     email: 'user@appsus.com',
     fullName: 'Nestor Appsus'
 }
 
+_createEmails()
 const criteria = {
     status: 'inbox/sent/trash/draft',
     txt: 'puki', // no need to support complex text search 
@@ -26,7 +28,7 @@ const criteria = {
 
 function query(criteria) {
     return storageService.query(EMAIL_KEY)
-        .then()
+    // .then()
 }
 
 function get(mailId) {
@@ -50,5 +52,24 @@ function remove(mailId) {
 }
 
 function _createEmails() {
-    let
+    let emails = utilService.load(EMAIL_KEY) || []
+    if (!emails || !emails.length) {
+        emails.push({
+            id: 'e101',
+            subject: 'Miss you!',
+            body: 'Would love to catch up sometimes',
+            isRead: false,
+            sentAt: 1551133930594,
+            to: 'momo@momo.com'
+        }),
+            emails.push({
+                id: 'e102',
+                subject: 'Missasdfa you!',
+                body: 'Would asdasdlove to catch up sometimes',
+                isRead: true,
+                sentAt: 1551133953,
+                to: 'momo2@momo2.com'
+            })
+    }
+    utilService.save(EMAIL_KEY, emails)
 }
