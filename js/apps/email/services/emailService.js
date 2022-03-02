@@ -28,8 +28,8 @@ _createEmails()
 function query(criteria) {
     return storageService.query(EMAIL_KEY)
         .then(emails => emails.filter(email => {
-            console.log(email.status)
-            console.log(criteria.status)
+            // console.log(email.status)
+            // console.log(criteria.status)
             return email.status === criteria.status
         }))
 }

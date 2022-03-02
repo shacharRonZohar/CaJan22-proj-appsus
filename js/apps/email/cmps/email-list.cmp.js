@@ -6,10 +6,11 @@ export default {
         <section class="email-list">
             <ul>
                 <li class="email-article" v-for="email in emails" :key="email.id" >
-                    <email-preview :email="email"/>
+                    <router-link :to="$route.params.status+'/'+email.id">
+                        <email-preview :email="email"/>
+                    </router-link>
                 </li>
             </ul>
-            <!-- {{emails}} -->
         </section>
     `,
     components: {
@@ -26,7 +27,6 @@ export default {
     unmounted() {
 
     },
-
     methods: {
 
     },

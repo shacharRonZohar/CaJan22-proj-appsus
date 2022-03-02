@@ -5,7 +5,11 @@ export default {
     emits: [''],
     template: `
         <section class="email-app">This is an email page!
-            <email-list :emails="emails" />
+            <nav class="side-nav">
+                <router-link to="/email/inbox">Inbox</router-link>
+                <router-link to="/email/sent">Sent</router-link>
+            </nav>
+            <router-view :emails="emails" />
         </section>
     `,
     components: {
@@ -19,12 +23,21 @@ export default {
                 txt: 'puki', // no need to support complex text search 
                 isRead: true, // (optional property, if missing: show all) 
                 isStared: true, // (optional property, if missing: show all) 
-                lables: ['important', 'romantic']
-            } // has any of the labels }
+                lables: ['important', 'romantic'] // has any of the labels 
+            }
         }
     },
     created() {
         this.loadEmails()
+    },
+    watch: {
+        '$route.params.status': {
+            handler() {
+                this.criteria.status = this.$route.params.status
+                this.loadEmails()
+            },
+            immediate: true,
+        }
     },
     methods: {
         loadEmails() {
@@ -33,6 +46,8 @@ export default {
         }
     },
     computed: {
+        getCriteria() {
 
+        }
     },
 }
