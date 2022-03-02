@@ -6,12 +6,12 @@ export default {
     template: `
         <section class="email-app">
             <nav class="side-nav">
-                <router-link to="/email/inbox">
-                    <div class="icon inbox"></div>
+                <router-link class="inbox" to="/email/inbox">
+                    <div class="icon"></div>
                     Inbox
                 </router-link>
-                <router-link to="/email/sent">
-                    <div class="icon sent"></div>
+                <router-link class="sent" to="/email/sent">
+                    <div class="icon"></div>
                     Sent
                 </router-link>
             </nav>

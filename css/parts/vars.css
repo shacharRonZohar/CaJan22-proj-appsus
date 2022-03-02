@@ -8,4 +8,8 @@
     /* Read email color */
     --clr4: #f5f7f7;
     --clr5: black;
+    /* Inbox active background color*/
+    --clr6: #fce8e6;
+    /* Inbox active color*/
+    --clr7: #d93025;
 }

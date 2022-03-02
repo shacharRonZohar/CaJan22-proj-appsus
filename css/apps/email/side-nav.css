@@ -3,27 +3,42 @@
     /* background-color: purple; */
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    /* gap: 10px; */
     align-items: center;
 }
 
 .email-app .side-nav>* {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 15px;
     height: 32px;
     width: 100%;
-    padding-right: 26px;
+    padding-left: 26px;
+    margin-right: 18px;
+    border-bottom-right-radius: 25px;
+    border-top-right-radius: 25px;
 }
 
 .email-app .side-nav>*:hover {
     background-color: var(--clr4);
+
 }
 
-.email-app .icon.inbox {
+.email-app .inbox .icon {
     background-image: url(../../../assets/icons/inbox.svg);
 }
 
-.email-app .icon.sent {
+.email-app .sent .icon {
     background-image: url(../../../assets/icons/sent.svg);
+}
+
+.email-app .router-link-exact-active {
+    background-color: var(--clr3);
+    font-family: roboto-b, sans-serif;
+}
+
+.email-app .inbox.router-link-exact-active {
+    background-color: var(--clr6);
+    color: var(--clr7);
+
 }
