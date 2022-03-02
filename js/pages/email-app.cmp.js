@@ -4,7 +4,7 @@ import emailList from "../apps/email/cmps/email-list.cmp.js"
 export default {
     emits: [''],
     template: `
-        <section class="email-app">This is an email page!
+        <section class="email-app">
             <nav class="side-nav">
                 <router-link to="/email/inbox">Inbox</router-link>
                 <router-link to="/email/sent">Sent</router-link>
