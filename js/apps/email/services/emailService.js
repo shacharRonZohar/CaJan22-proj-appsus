@@ -84,14 +84,14 @@ function _createEmails() {
         email1.id = 'e101'
         email1.subject = 'Miss you!'
         email1.body = 'Would love to catch up sometimes'
-        email1.isRead = false
+        email1.isRead = true
         email1.sentAt = 1646229756255
         email1.to = loggedInUser
         email1.from = otherUser
         email1 = _setStatus(email1)
         email2.id = 'e102'
         email2.body = 'Would love to catch up sometimes2'
-        email2.isRead = true
+        email2.isRead = false
         email2.sentAt = 1551133953
         email2.to = otherUser
         email2.from = loggedInUser

@@ -1,6 +1,6 @@
 .email-app {
     /* grid-column: 3 / span 27; */
-    margin-right: 10px;
+    /* margin-right: 10px; */
     display: grid;
     grid-template: repeat(15, 1fr) / repeat(15, 1fr);
 }
