@@ -1,9 +1,11 @@
+import {eventBus} from '../../../services/eventBus-service.js'
+
 export default {
     props: ['note'],
     template: `
         <section style="background-color: red" class="note-txt">
             <span class="title">{{getNoteTitle}}</span>
-            <button @click="deleteNote">delete</button>
+            <button @click="deleteNote(note.id)">delete</button>
 
         </section>
    `,
@@ -13,6 +15,9 @@ export default {
         }
     },
     methods: {
+        deleteNote(noteId) {
+            eventBus.emit('deleteNote', noteId)
+        }
 
     },
     computed: {
