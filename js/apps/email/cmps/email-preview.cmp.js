@@ -24,10 +24,7 @@ export default {
     },
 
     methods: {
-        isBodyLong() {
-            return false
-            // if(this.email.b >)ody.length
-        }
+
     },
     computed: {
         subjectTxt() {
