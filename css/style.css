@@ -1,8 +1,10 @@
 /* Parts */
 @import url(parts/base.css);
 @import url(parts/main-layout.css);
+
 /* Apps */
 @import url(apps/email/main-email.css);
+@import url(apps/keep/main-keep.css);
 
 /* CMPs */
 @import url(cmps/main-cmps.css);
