@@ -71,8 +71,6 @@ function getEmptyEmail() {
 function toggleRead(email) {
     email.isRead = !email.isRead
     return put(email)
-
-    return Promise.resolve(email)
 }
 function _setStatus(email) {
     let status
@@ -88,23 +86,28 @@ function _createEmails() {
     // Temporary!
     let emails = utilService.load(EMAIL_KEY) || []
     if (!emails || !emails.length) {
-        let email1 = getEmptyEmail(), email2 = getEmptyEmail()
-        email1.id = 'e101'
-        email1.subject = 'Miss you!'
-        email1.body = 'Would love to catch up sometimes'
-        email1.isRead = false
-        email1.sentAt = 1646229756255
-        email1.to = loggedInUser
-        email1.from = otherUser
-        email1 = _setStatus(email1)
-        email2.id = 'e102'
-        email2.body = 'Would love to catch up sometimes2'
-        email2.isRead = false
-        email2.sentAt = 1551133953
-        email2.to = otherUser
-        email2.from = loggedInUser
-        email2 = _setStatus(email2)
-        emails = [email1, email2]
+        // let email1 = getEmptyEmail(), email2 = getEmptyEmail()
+        emails.push(..._getDemoEmails(true))
+        emails.push(..._getDemoEmails(false))
     }
     utilService.save(EMAIL_KEY, emails)
+}
+
+function _getDemoEmails(isRecieved) {
+    let emails = []
+    for (let i = 0; i < 10; i++) {
+        let email = {
+            id: utilService.makeExtId(),
+            subject: 'Miss you!',
+            body: 'Would love to catch up sometimes',
+            isRead: isRecieved ? false : true,
+            sentAt: Math.random() > 0.5 ? Date.now() : 1646229756255,
+            to: isRecieved ? loggedInUser : otherUser,
+            from: isRecieved ? otherUser : loggedInUser
+        }
+        console.log(email)
+        email = _setStatus(email)
+        emails.push(email)
+    }
+    return emails
 }
