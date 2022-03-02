@@ -1,7 +1,7 @@
 export default {
     emits: [''],
     template: `
-        <section>This is a mail page!</section>
+        <section>This is an email page!</section>
     `,
     components: {
 
@@ -19,7 +19,6 @@ export default {
     },
 
     methods: {
-
     },
     computed: {
 
