@@ -2,10 +2,11 @@ export default {
     props: ['email'],
     emits: [''],
     template: `
-        {{email}}
+    <section class="email-preview">
+        <span class="subject">Subject: {{subjectTxt}}</span>
+    </section>
     `,
     components: {
-
     },
     data() {
         return {
@@ -23,6 +24,8 @@ export default {
 
     },
     computed: {
-
+        subjectTxt() {
+            return this.email.subject ? this.email.subject : 'No Subject'
+        }
     },
 }

@@ -64,7 +64,7 @@ function _createEmails() {
         }),
             emails.push({
                 id: 'e102',
-                subject: 'Missasdfa you!',
+                subject: '',
                 body: 'Would asdasdlove to catch up sometimes',
                 isRead: true,
                 sentAt: 1551133953,

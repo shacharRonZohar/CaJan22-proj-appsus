@@ -19,10 +19,6 @@ export default {
     created() {
         this.loadEmails()
     },
-    unmounted() {
-
-    },
-
     methods: {
         loadEmails() {
             emailService.query()
