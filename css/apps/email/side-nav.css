@@ -16,6 +16,10 @@
     padding-right: 26px;
 }
 
+.email-app .side-nav>*:hover {
+    background-color: var(--clr4);
+}
+
 .email-app .icon.inbox {
     background-image: url(../../../assets/icons/inbox.svg);
 }
