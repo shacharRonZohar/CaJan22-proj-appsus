@@ -8,6 +8,7 @@ export const emailService = {
     query,
     remove,
     postMany,
+    toggleRead
 }
 const EMAIL_KEY = 'mailDB'
 
@@ -66,6 +67,13 @@ function getEmptyEmail() {
         status: ''
     }
 }
+
+function toggleRead(email) {
+    email.isRead = !email.isRead
+    return put(email)
+
+    return Promise.resolve(email)
+}
 function _setStatus(email) {
     let status
     if (email.to.email === loggedInUser.email) status = 'inbox'
@@ -84,7 +92,7 @@ function _createEmails() {
         email1.id = 'e101'
         email1.subject = 'Miss you!'
         email1.body = 'Would love to catch up sometimes'
-        email1.isRead = true
+        email1.isRead = false
         email1.sentAt = 1646229756255
         email1.to = loggedInUser
         email1.from = otherUser
