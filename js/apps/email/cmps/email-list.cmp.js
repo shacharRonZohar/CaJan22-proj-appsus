@@ -27,7 +27,6 @@ export default {
     unmounted() {
 
     },
-
     methods: {
 
     },
