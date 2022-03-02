@@ -46,7 +46,7 @@ export default {
                 month: '2-digit',
                 day: '2-digit'
             }
-            if ((Date.now() - this.email.sentAt) < 86400000) {
+            if ((Date.now() - this.email.sentAt) < 86400000) { // The number of milliseconds for a day
                 opts = {
                     hour: '2-digit',
                     minute: '2-digit'

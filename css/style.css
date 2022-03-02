@@ -1,1 +1,4 @@
-@import url(apps/email/email-preview.css);
+/* Parts */
+@import url(parts/base.css);
+/* Apps */
+@import url(apps/email/main-email.css);
