@@ -18,17 +18,15 @@ const loggedInUser = {
 }
 
 _createEmails()
-const criteria = {
-    status: 'inbox/sent/trash/draft',
-    txt: 'puki', // no need to support complex text search 
-    isRead: true, // (optional property, if missing: show all) 
-    isStared: true, // (optional property, if missing: show all) 
-    lables: ['important', 'romantic'] // has any of the labels }
-}
+
 
 function query(criteria) {
     return storageService.query(EMAIL_KEY)
-    // .then()
+        .then(emails => emails.filter(email => {
+            console.log(email.status)
+            console.log(criteria.status)
+            return email.status === criteria.status
+        }))
 }
 
 function get(mailId) {
@@ -51,25 +49,46 @@ function remove(mailId) {
     return storageService.remove(EMAIL_KEY, mailId)
 }
 
+function getEmptyEmail() {
+    return {
+        id: '',
+        subject: '',
+        body: '',
+        isRead: false,
+        sentAt: null,
+        to: '',
+        status: ''
+    }
+}
+function _setStatus(email) {
+    let status
+    if (email.to === loggedInUser.email) status = 'inbox'
+    // else if (email.isDeleted) status = 'trash'
+    // else if (!email.isComplete) status = 'draft'
+    else status = 'sent'
+    email.status = status
+    return email
+}
+
 function _createEmails() {
+    // Temporary!
     let emails = utilService.load(EMAIL_KEY) || []
     if (!emails || !emails.length) {
-        emails.push({
-            id: 'e101',
-            subject: 'Miss you!',
-            body: 'Would love to catch up sometimes',
-            isRead: false,
-            sentAt: 1551133930594,
-            to: 'momo@momo.com'
-        }),
-            emails.push({
-                id: 'e102',
-                subject: '',
-                body: 'Would asdasdlove to catch up sometimes',
-                isRead: true,
-                sentAt: 1551133953,
-                to: 'momo2@momo2.com'
-            })
+        let email1 = getEmptyEmail(), email2 = getEmptyEmail()
+        email1.id = 'e101'
+        email1.subject = 'Miss you!'
+        email1.body = 'Would love to catch up sometimes'
+        email1.isRead = false
+        email1.sentAt = 1551133930594
+        email1.to = 'user@appsus.com'
+        email1 = _setStatus(email1)
+        email2.id = 'e102'
+        email2.body = 'Would love to catch up sometimes2'
+        email2.isRead = true
+        email2.sentAt = 1551133953
+        email2.to = 'usesr@appsus.com'
+        email2 = _setStatus(email2)
+        emails = [email1, email2]
     }
     utilService.save(EMAIL_KEY, emails)
 }

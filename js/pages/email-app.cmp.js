@@ -13,7 +13,14 @@ export default {
     },
     data() {
         return {
-            emails: null
+            emails: null,
+            criteria: {
+                status: 'inbox',
+                txt: 'puki', // no need to support complex text search 
+                isRead: true, // (optional property, if missing: show all) 
+                isStared: true, // (optional property, if missing: show all) 
+                lables: ['important', 'romantic']
+            } // has any of the labels }
         }
     },
     created() {
@@ -21,7 +28,7 @@ export default {
     },
     methods: {
         loadEmails() {
-            emailService.query()
+            emailService.query(this.criteria)
                 .then(emails => this.emails = emails)
         }
     },
