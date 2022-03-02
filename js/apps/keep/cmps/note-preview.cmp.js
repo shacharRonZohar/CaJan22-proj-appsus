@@ -1,8 +1,13 @@
+import noteTxt from './note-txt.cmp.js'
+
 export default {
     props: ['note'],
     template: `
-        <span class="note-title">{{getNoteTitle}}</span>
+        <note-txt :note="note"></note-txt>
    `,
+    components: {
+        noteTxt,
+    },
     data() {
         return {
 
@@ -12,10 +17,6 @@ export default {
 
     },
     computed: {
-        getNoteTitle() {
-            const title = (this.note.info.title) ? this.note.info.title : ''
-            return title
-            // if (this.note.info.title) return this.note.info.title
-        }
+
     },
 }
