@@ -1,4 +1,4 @@
 .main-layout {
-    grid-column: 1 / span 27;
-    margin-left: 15px;
+    grid-column: 1 / span 29;
+    margin: 0 10px;
 }
