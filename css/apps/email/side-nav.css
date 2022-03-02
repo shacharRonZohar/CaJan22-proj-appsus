@@ -40,5 +40,4 @@
 .email-app .inbox.router-link-exact-active {
     background-color: var(--clr6);
     color: var(--clr7);
-
 }
