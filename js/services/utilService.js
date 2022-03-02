@@ -19,7 +19,7 @@ function makeId(startSymb = '', length = 9) {
 	return text
 }
 
-function makeExtId(length) {
+function makeExtId(length = 9) {
 	let text = ''
 	const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
 	for (let i = 0; i < length; i++) {

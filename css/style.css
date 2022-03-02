@@ -1,7 +1,7 @@
 /* Parts */
 @import url(parts/base.css);
 @import url(parts/main-layout.css);
-
+@import url(parts/fonts.css);
 /* Apps */
 @import url(apps/email/main-email.css);
 @import url(apps/keep/main-keep.css);

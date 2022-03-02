@@ -1,1 +1,8 @@
-.email-app .side-nav {}
+.email-app .side-nav {
+    grid-area: 1 / 1 / span 15 / span 2;
+    background-color: purple;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}

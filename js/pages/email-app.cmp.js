@@ -9,7 +9,7 @@ export default {
                 <router-link to="/email/inbox">Inbox</router-link>
                 <router-link to="/email/sent">Sent</router-link>
             </nav>
-            <router-view :emails="emails" />
+            <router-view @read="onRead" class="email-content" :emails="emails" />
         </section>
     `,
     components: {
@@ -43,6 +43,14 @@ export default {
         loadEmails() {
             emailService.query(this.criteria)
                 .then(emails => this.emails = emails)
+        },
+        onRead(id) {
+            console.log(id)
+            emailService.get(id)
+                .then(email => {
+                    if (!email.isRead) emailService.toggleRead(email)
+                        .then(() => this.loadEmails())
+                })
         }
     },
     computed: {
