@@ -6,10 +6,10 @@ export default {
     <section class="note-add">
         <div class="take-not">
             <form>
-                <input v-model="newNote.info.title" type="text" placeholder="Title"> <br>
+                <input v-model="newNote.info.title" type="text" placeholder="Title">
                 <input v-model="newNote.info.txt" type="text" placeholder="Take a note...">
+                <button @click.prevent="addNote">Add note</button>
             </form>
-            <button @click="addNote">Add note</button>
             <!-- <pre>{{newNote}}</pre> -->
         </div>
     </section>

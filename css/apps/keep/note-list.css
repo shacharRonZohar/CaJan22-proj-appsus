@@ -1,9 +1,19 @@
 .note-list {
-    background-color: pink;
+    background-color: lightgray;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    
-    width: 100%;
+    align-self: center;
+
     gap: 10px;
+    padding: 10px;
+}
+
+.note-list .note {
+    background-color: #F5CB5C;
+    /* flex-basis: 30%; */
+    width: 238px;
+    min-height: 60px;
+    border-radius: 5px;
+    padding: 5px;
 }
