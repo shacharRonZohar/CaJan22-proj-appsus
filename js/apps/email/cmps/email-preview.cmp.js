@@ -2,8 +2,10 @@ export default {
     props: ['email'],
     emits: [''],
     template: `
-    <section class="email-preview">
-        <span class="subject">Subject: {{subjectTxt}}</span>
+    {{email}}
+    <section class="email-preview" :class="isRead">
+        <span class="subject">{{subjectTxt}}</span>
+        <span class="body-preview">{{email.body}}</span>
     </section>
     `,
     components: {
@@ -21,11 +23,17 @@ export default {
     },
 
     methods: {
-
+        isBodyLong() {
+            return false
+            // if(this.email.b >)ody.length
+        }
     },
     computed: {
         subjectTxt() {
             return this.email.subject ? this.email.subject : 'No Subject'
+        },
+        isRead() {
+            return { 'read': this.email.isRead }
         }
     },
 }
