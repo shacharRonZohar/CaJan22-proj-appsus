@@ -1,8 +1,25 @@
 .email-app .side-nav {
     grid-area: 1 / 1 / span 15 / span 2;
-    background-color: purple;
+    /* background-color: purple; */
     display: flex;
     flex-direction: column;
     gap: 10px;
     align-items: center;
+}
+
+.email-app .side-nav>* {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    height: 32px;
+    width: 100%;
+    padding-right: 26px;
+}
+
+.email-app .icon.inbox {
+    background-image: url(../../../assets/icons/inbox.svg);
+}
+
+.email-app .icon.sent {
+    background-image: url(../../../assets/icons/sent.svg);
 }

@@ -1,0 +1,11 @@
+:root {
+    /* Main Background Color */
+    --clr1: #fff;
+    /* Borders color */
+    --clr2: #eceff1;
+    /* Search background color */
+    --clr3: #f1f3f4;
+    /* Read email color */
+    --clr4: #f5f7f7;
+    --clr5: black;
+}

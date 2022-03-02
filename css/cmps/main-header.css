@@ -9,7 +9,7 @@
     width: 100vw;
     position: absolute;
     height: 1px;
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid var(--clr2);
     top: 73px;
     left: 0;
 }

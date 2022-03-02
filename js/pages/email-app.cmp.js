@@ -6,8 +6,14 @@ export default {
     template: `
         <section class="email-app">
             <nav class="side-nav">
-                <router-link to="/email/inbox">Inbox</router-link>
-                <router-link to="/email/sent">Sent</router-link>
+                <router-link to="/email/inbox">
+                    <div class="icon inbox"></div>
+                    Inbox
+                </router-link>
+                <router-link to="/email/sent">
+                    <div class="icon sent"></div>
+                    Sent
+                </router-link>
             </nav>
             <router-view @read="onRead" class="email-content" :emails="emails" />
         </section>
