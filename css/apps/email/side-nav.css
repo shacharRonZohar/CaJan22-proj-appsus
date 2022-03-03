@@ -1,5 +1,5 @@
 .email-app .side-nav {
-    grid-area: 1 / 1 / span 15 / span 2;
+    grid-area: 1 / 1 / span 15 / span 3;
     /* background-color: purple; */
     display: flex;
     flex-direction: column;
@@ -10,7 +10,8 @@
 .email-app .side-nav>*:not(.compose) {
     display: flex;
     align-items: center;
-    gap: 15px;
+    /* gap: 15px; */
+    /* flex-grow: 1; */
     height: 32px;
     width: 100%;
     padding-left: 26px;

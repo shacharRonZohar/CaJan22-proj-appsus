@@ -10,5 +10,5 @@
 
 .email-details .body-preview {
     overflow-y: hidden;
-    flex-grow: 5;
+    flex-grow: 20;
 }
