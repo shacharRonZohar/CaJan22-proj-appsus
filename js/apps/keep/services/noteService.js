@@ -45,7 +45,6 @@ function addNote(note) {
 
 function getEmptyNote(noteType) {
     const newNote = {
-        // type: 'note-txt',
         isPinned: false,
         info: {},
         style: {
@@ -53,12 +52,15 @@ function getEmptyNote(noteType) {
         }
     }
     if (noteType === 'note-txt') {
+        newNote.type = 'note-txt'
         newNote.info.txt = null
         newNote.info.title = null
     } else if (noteType === 'note-img') {
+        newNote.type = 'note-img'
         newNote.info.url = null
         newNote.info.title = null
     } else if (noteType === 'note-video') {
+        newNote.type = 'note-video'
         newNote.info.url = null
     }
     return newNote
