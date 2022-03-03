@@ -15,14 +15,6 @@
     flex-direction: column;
 }
 
-.keep-app .main-content .note-add {
-    background-color: rgb(245, 245, 245);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-grow: 2;
-}
-
 .keep-app .side-nav {
     background-color: var(--clr1);
     align-self: flex-start;
