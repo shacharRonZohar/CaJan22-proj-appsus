@@ -13,6 +13,7 @@
     /* gap: 15px; */
     /* flex-grow: 1; */
     height: 32px;
+    /* min-height: 32px; */
     width: 100%;
     padding-left: 26px;
     margin-right: 18px;
@@ -23,6 +24,19 @@
 .email-app .side-nav>*:hover {
     background-color: var(--clr4);
 
+}
+
+.email-app .side-nav a div:first-child {
+    flex-grow: 1;
+}
+
+.email-app .side-nav a div:last-child {
+    flex-grow: 7;
+}
+
+.email-app .side-nav .txt-container {
+    display: flex;
+    justify-content: space-around;
 }
 
 .email-app .compose .icon {
