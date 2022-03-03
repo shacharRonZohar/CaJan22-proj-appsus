@@ -36,7 +36,17 @@
 
 .email-app .side-nav .txt-container {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding-right: 25px;
+}
+
+.email-app .side-nav .txt-container>* {
+    flex-grow: 1;
+}
+
+.email-app .side-nav .txt-container span:last-child {
+    display: flex;
+    justify-content: flex-end;
 }
 
 .email-app .compose .icon {

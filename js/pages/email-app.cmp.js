@@ -20,7 +20,7 @@ export default {
                 </router-link>
                 <router-link class="sent" to="/email/sent">
                     <div class="icon"></div>
-                    <span class="sent">Sent</span>
+                    <div class="sent">Sent</div>
                 </router-link>
             </nav>
             <router-view @read="onRead" class="email-content" :emails="emails" />
