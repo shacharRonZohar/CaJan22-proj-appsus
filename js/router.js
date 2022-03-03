@@ -13,11 +13,19 @@ const routes = [
         path: '/email',
         component: emailApp,
         children: [{
-            path: ':status/:compose?',
+            path: ':status',
             component: emailList,
         },
         {
-            path: ':status/:emailId/:compose?',
+            path: ':status/compose',
+            component: emailList
+        },
+        {
+            path: ':status/:emailId',
+            component: emailDetails
+        },
+        {
+            path: ':status/:emailId/compose',
             component: emailDetails
         },
         ],
