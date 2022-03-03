@@ -5,7 +5,7 @@
 
 .home-page .hero {
     height: 50%;
-    background-image: url('./assets/imgs/home-page.jpg');
+    background-image: url('./../../assets/imgs/home-page.jpg');
     display: flex;
     justify-content: center;
     align-items: center;

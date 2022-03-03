@@ -10,6 +10,9 @@ Vue.createApp({
             <app-footer />
         </section>
     `,
+    created() {
+        console.log('hi')
+    },
     components: {
         appHeader,
         appFooter,
