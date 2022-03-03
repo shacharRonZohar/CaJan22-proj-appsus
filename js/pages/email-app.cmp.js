@@ -6,7 +6,7 @@ export default {
     template: `
         <section class="email-app">
             <nav class="side-nav">
-                <router-link class="btn compose" :to="composeUrl">
+                <router-link class="btn compose" :to="getComposePath">
                     <div class="icon"></div>
                     Compose
                 </router-link>
@@ -74,23 +74,22 @@ export default {
                     if (!email.isRead) emailService.toggleRead(email)
                         .then(() => this.loadEmails())
                 })
-        }
+        },
     },
     computed: {
+        getComposePath() {
+            if (this.$route.fullPath.includes('compose')) return this.$route.fullPath
+            return this.$route.fullPath + '/compose'
+            this.$route.params.compose = 'compose'
+            // this.$router.push(`${this.$route.fullPath}/compose`)
+            this.$router.push(this.$route.fullPath)
+        },
         getCriteria() {
 
         },
         formattedNumOfUnread() {
             return this.numOfUnread ? this.numOfUnread : ''
         },
-        composeUrl() {
-            let url = ''
-            // console.log(this.$route.status)
-            if (this.$route.params.emailId) url += this.$route.params.emailId + '/'
-            else if (this.$route.params.status) url += this.$route.params.status + '/'
-            url += 'compose'
-            console.log(url)
-            return url
-        }
+
     },
 }

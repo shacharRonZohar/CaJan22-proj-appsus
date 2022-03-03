@@ -5,6 +5,7 @@ import emailList from './apps/email/cmps/email-list.cmp.js'
 import keepApp from './pages/keep-app.cmp.js'
 import noteEdit from './apps/keep/pages/note-edit.cmp.js'
 import noteList from './apps/keep/cmps/note-list.cmp.js'
+
 const routes = [
     {
         path: '/',
@@ -14,14 +15,21 @@ const routes = [
         path: '/email',
         component: emailApp,
         children: [{
-            path: ':status/:compose?',
+            path: ':status',
             component: emailList,
         },
         {
-            path: ':status/:emailId/:compose?',
+            path: ':status/compose',
+            component: emailList
+        },
+        {
+            path: ':status/:emailId',
             component: emailDetails
         },
-        ],
+        {
+            path: ':status/:emailId/compose',
+            component: emailDetails
+        }],
     },
 
     {
