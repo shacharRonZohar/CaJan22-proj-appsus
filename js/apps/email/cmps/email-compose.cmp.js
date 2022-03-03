@@ -2,14 +2,19 @@ import { emailService } from "../services/emailService.js"
 
 export default {
     props: [''],
-    emits: [''],
+    emits: ['close', 'sent'],
     template: `
             <section class="email-compose">
+                <header>New Message <button @click="close" class="close"></button></header>
                 <form @submit.prevent="sendEmail" v-if="newEmail">
-                    <label for="to">To:</label>
-                    <input id="to" name="to" type="text" v-model="newEmail.to.email">
-                    <label for="subject">Subject</label>
-                    <input id="subject" type="text" v-model="newEmail.subject">
+                    <label for="to">
+                        To
+                        <input id="to" name="to" type="text" v-model="newEmail.to.email">
+                    </label>
+                    <label for="subject">
+                        Subject
+                        <input id="subject" type="text" v-model="newEmail.subject">
+                    </label>
                     <textarea 
                         name="body" 
                         id="body" 
@@ -41,6 +46,11 @@ export default {
         sendEmail() {
             console.log(this.newEmail)
             emailService.send(this.newEmail)
+                .then(() => this.$emit('sent'))
+
+        },
+        close() {
+            this.$emit('close')
         }
     },
     computed: {

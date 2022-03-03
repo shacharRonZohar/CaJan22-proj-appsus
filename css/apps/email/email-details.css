@@ -2,3 +2,13 @@
     display: flex;
     flex-direction: column;
 }
+
+.email-details header {
+    flex-grow: 1;
+    border-bottom: 1px solid var(--clr2);
+}
+
+.email-details .body-preview {
+    overflow-y: hidden;
+    flex-grow: 5;
+}

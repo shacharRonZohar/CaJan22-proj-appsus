@@ -1,0 +1,17 @@
+.email-compose {
+    position: fixed;
+    bottom: 0;
+    right: 10px;
+    width: 600px;
+    height: 400px;
+    background: gray;
+    z-index: 2;
+}
+
+.email-compose form {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 10px;
+    /* justify-content: space-between; */
+}

@@ -3,15 +3,17 @@ import { utilService } from '../../../services/utilService.js'
 import { emailService } from '../services/emailService.js'
 
 export default {
-    props: [''],
+    props: ['emails'],
     emits: [''],
     template: `
         <section v-if="email" class="email-details">
-            <span class="subject">{{subjectTxt}}</span>
-            <span class="from">{{email.from.fullName}} {{email.from.email}}</span>
-            <span class="to">{{email.to.fullName}}</span>
-            <span class="sent-at">{{formattedTime}}</span>
-            <span class="body-preview">{{email.body}}</span>
+            <header class="email-header">
+                <span class="subject">{{subjectTxt}}</span>
+                <span class="from">{{email.from.fullName}} {{email.from.email}}</span>
+                <span class="to">{{email.to.fullName}}</span>
+                <span class="sent-at">{{formattedTime}}</span>
+            </header>
+            <div class="body-preview">{{email.body}}</div>
         </section>
     `,
     components: {

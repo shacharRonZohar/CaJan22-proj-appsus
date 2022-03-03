@@ -14,11 +14,36 @@
     left: 0;
 }
 
-.logo {
+.main-header nav {
+    /* text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6); */
+    display: flex;
+    /* gap: 50px; */
+    font-size: 1.7rem;
+    color: gray;
+    height: 100%;
+}
+
+.main-header nav>* {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 10px;
+}
+
+.main-header nav>*:not(:last-child) {
+    border-right: 1px solid var(--clr2);
+}
+
+.main-header .logo {
     background-image: url(../../assets/imgs/logo.png);
     background-size: cover;
     background-repeat: no-repeat;
     height: 65px;
     width: 80px;
     /* width: 100%; */
+}
+
+.main-header a:not(.logo):hover {
+    background-color: var(--clr4);
+
 }
