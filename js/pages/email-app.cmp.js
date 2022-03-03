@@ -8,7 +8,7 @@ export default {
             <nav class="side-nav">
                 <router-link class="inbox" to="/email/inbox">
                     <div class="icon"></div>
-                    Inbox
+                    Inbox <span>{{formattedNumOfUnread}}</span>
                 </router-link>
                 <router-link class="sent" to="/email/sent">
                     <div class="icon"></div>
@@ -30,7 +30,8 @@ export default {
                 isRead: true, // (optional property, if missing: show all) 
                 isStared: true, // (optional property, if missing: show all) 
                 lables: ['important', 'romantic'] // has any of the labels 
-            }
+            },
+            numOfUnread: 0
         }
     },
     created() {
@@ -43,6 +44,16 @@ export default {
                 this.loadEmails()
             },
             immediate: true,
+        },
+        'this.emails': {
+            handler() {
+                if (this.criteria.status !== 'inbox' || !this.emails) return
+                // if () retur
+                console.log(this.emails)
+                this.numOfUnread = this.emails.filter(email => email.isRead).length
+            },
+            immediate: true,
+            deep: true
         }
     },
     methods: {
@@ -62,6 +73,9 @@ export default {
     computed: {
         getCriteria() {
 
+        },
+        formattedNumOfUnread() {
+            return this.numOfUnread ? this.numOfUnread : ''
         }
     },
 }
