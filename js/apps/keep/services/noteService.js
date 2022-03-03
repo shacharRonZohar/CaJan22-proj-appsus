@@ -110,6 +110,40 @@ function _createNotes() {
                 url: 'https://www.youtube.com/watch?v=oLDqCbv0FBQ'
             }
         },
+        {
+            id: 'n105',
+            type: 'note-video',
+            info: {
+                url: 'https://www.youtube.com/watch?v=C926N9zMJkU'
+            }
+        },
+        {
+            id: 'n106',
+            type: 'note-txt',
+            isPinned: true,
+            info: {
+                txt: 'Fullstack Me Baby!',
+                title: 'Okay'
+            }
+        },
+        {
+            id: 'n107',
+            type: 'note-img',
+            info: {
+                url: '../../../../assets/imgs/horse.jpg',
+                title: 'Bojack horseman'
+            },
+            style: {
+                backgroundColor: '#00d'
+            }
+        },
+        {
+            id: 'n108',
+            type: 'note-video',
+            info: {
+                url: 'https://www.youtube.com/watch?v=uNT_AxXrUGs'
+            }
+        },
         ]
         utilService.save(NOTES_KEY, notes)
     }

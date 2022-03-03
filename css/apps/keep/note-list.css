@@ -6,6 +6,7 @@
     gap: 10px;
     flex-grow: 9;
     padding: 15px;
+    overflow-y: scroll;
 }
 
 .note-list .note {
@@ -25,7 +26,7 @@
     cursor: pointer;
     background-image: url(../../../assets/icons/delete.svg);
     border: none;
-    background-color: #fff;
+    background-color: var(--clr1);
 }
 
 .note.note-video {
