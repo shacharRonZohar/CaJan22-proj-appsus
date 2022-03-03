@@ -131,7 +131,7 @@ function _createNotes() {
             type: 'note-img',
             info: {
                 url: '../../../../assets/imgs/horse.jpg',
-                title: 'Bojack horseman'
+                title: 'Bojack Horseman'
             },
             style: {
                 backgroundColor: '#00d'

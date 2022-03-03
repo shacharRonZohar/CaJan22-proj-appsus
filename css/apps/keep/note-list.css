@@ -27,6 +27,7 @@
     background-image: url(../../../assets/icons/delete.svg);
     border: none;
     background-color: var(--clr1);
+    margin-top: 15px;
 }
 
 .note.note-video {
