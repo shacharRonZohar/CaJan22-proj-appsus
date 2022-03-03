@@ -6,19 +6,11 @@ import noteAdd from '../apps/keep/cmps/note-add.cmp.js'
 export default {
     template: `
         <section class="keep-app">
-            <nav class="side-nav">
-                <ul>
-                    <li>nav-bar</li>
-                    <li>Notes</li>
-                    <li>Trash</li>
-                </ul>
-            </nav>
             <div class="main-content">
                 <note-add class="note-add" @noteAdded="updateNotes"></note-add>
                 <!-- <router-view :notes="notes"></router-view> -->
                 <note-list class="note-list" :notes="notes"></note-list>
             </div>
-            <!-- <pre>{{notes}}</pre> -->
         </section>
     `,
     components: {

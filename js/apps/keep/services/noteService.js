@@ -44,19 +44,24 @@ function addNote(note) {
 }
 
 function getEmptyNote(noteType) {
-    if (noteType === 'note-txt'){
-        return {
-            type: 'note-txt',
-            isPinned: false,
-            info: {
-                txt: null,
-                title: 'Title'
-            },
-            style: {
-                backgroundColor: 'yellow'
-            }
+    const newNote = {
+        // type: 'note-txt',
+        isPinned: false,
+        info: {},
+        style: {
+            backgroundColor: null
         }
     }
+    if (noteType === 'note-txt') {
+        newNote.info.txt = null
+        newNote.info.title = null
+    } else if (noteType === 'note-img') {
+        newNote.info.url = null
+        newNote.info.title = null
+    } else if (noteType === 'note-video') {
+        newNote.info.url = null
+    }
+    return newNote
 }
 
 // function _getFromYoutube(searchTerm){
