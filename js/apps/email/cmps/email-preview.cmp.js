@@ -4,13 +4,16 @@ export default {
     props: ['email'],
     emits: [''],
     template: `
-    <!-- {{email}} -->
-    <section class="email-preview" :class="isRead">
-        <span class="name-txt">{{nameTxt}}</span>
-        <span class="subject">{{subjectTxt}}</span>
-        <span class="body-preview">{{email.body}}</span>
-        <span class="sent-at">{{formattedTime}}</span>
-    </section>
+        <section class="email-preview" :class="isRead">
+            <div class="icon"></div>
+            <span class="name-txt">{{email.from.fullName}}</span>
+            <div class="txt-container">
+                <span class="subject">{{subjectTxt}}</span>
+                -
+                <span class="body-preview">{{email.body}}</span>
+            </div>
+            <span class="sent-at">{{formattedTime}}</span>
+        </section>
     `,
     components: {
     },
@@ -35,10 +38,6 @@ export default {
         },
         isRead() {
             return { 'read': this.email.isRead }
-        },
-        nameTxt() {
-            if (this.email.status === 'inbox') return this.email.from.fullName
-            else return this.email.to.fullName
         },
         formattedTime() {
             let opts = {

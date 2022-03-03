@@ -5,11 +5,13 @@ export const emailService = {
     get,
     put,
     post,
+    send,
     query,
     remove,
     postMany,
     toggleRead,
-    getNumOfUnread
+    getNewEmail,
+    getNumOfUnread,
 }
 const EMAIL_KEY = 'mailDB'
 
@@ -28,8 +30,6 @@ _createEmails()
 function query(criteria) {
     return storageService.query(EMAIL_KEY)
         .then(emails => emails.filter(email => {
-            // console.log(email.status)
-            // console.log(criteria.status)
             return email.status === criteria.status
         }))
 }
@@ -54,17 +54,21 @@ function remove(mailId) {
     return storageService.remove(EMAIL_KEY, mailId)
 }
 
-function getEmptyEmail() {
-    return {
-        id: '',
+function send(email) {
+    email.sentAt = Date.now()
+    email.from = loggedInUser
+    email.isRead = true
+    email = _setStatus(email)
+    post(email)
+}
+function getNewEmail() {
+    return Promise.resolve({
         subject: '',
         body: '',
-        isRead: false,
         sentAt: null,
         to: {},
-        from: {},
-        status: ''
-    }
+        from: {}
+    })
 }
 
 function getNumOfUnread() {
