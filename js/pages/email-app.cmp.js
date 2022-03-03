@@ -13,11 +13,14 @@ export default {
                 </router-link>
                 <router-link class="inbox" to="/email/inbox">
                     <div class="icon"></div>
-                    <span>Inbox {{formattedNumOfUnread}}</span>
+                    <div class="txt-container">
+                        <span>Inbox</span>
+                        <span>{{formattedNumOfUnread}}</span>
+                    </div>
                 </router-link>
                 <router-link class="sent" to="/email/sent">
                     <div class="icon"></div>
-                    <span class="sent">Sent</span>
+                    <div class="sent">Sent</div>
                 </router-link>
             </nav>
             <router-view @read="onRead" class="email-content" :emails="emails" />
