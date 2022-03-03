@@ -1,17 +1,26 @@
 .note-list {
-    background-color: lightgray;
+    background-color: var(--clr1);
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 7px;
+    gap: 10px;
     flex-grow: 9;
     padding: 15px;
 }
 
 .note-list .note {
-    background-color: #F5CB5C;
     width: 238px;
     height: fit-content;
+    border: 1px solid var(--clr8);
     border-radius: 5px;
     padding: 15px;
+}
+
+.note-list .note:hover {
+    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%),
+                0 1px 3px 1px rgb(60 64 67 / 15%);
+}
+
+.note.note-video {
+    width: 340px;
 }

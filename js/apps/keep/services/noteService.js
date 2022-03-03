@@ -11,6 +11,22 @@ export const noteService = {
     getEmptyNote
 }
 
+// export const typeService= {
+//     getNoteTypes()
+// }
+
+// function getNoteTypes(){
+//     const types = {
+//         cmps:[
+//             {
+//                 type: 'note-txt',
+
+//             }
+//         ]
+//     }
+//     return Promise.resolve()
+// }
+
 function query() {
     return storageService.query(NOTES_KEY)
 }
@@ -43,6 +59,9 @@ function getEmptyNote(noteType) {
     }
 }
 
+// function _getFromYoutube(searchTerm){
+
+// }
 function _createNotes() {
     let notes = utilService.load(NOTES_KEY)
     if (!notes || !notes.length) {
@@ -59,7 +78,7 @@ function _createNotes() {
             id: 'n102',
             type: 'note-img',
             info: {
-                url: 'http://some-img/me',
+                url: '../../../../assets/imgs/horse.jpg',
                 title: 'Bobi and Me'
             },
             style: {
@@ -76,7 +95,14 @@ function _createNotes() {
                     { txt: 'Coding power', doneAt: 187111111 }
                 ]
             }
-        }
+        },
+        {
+            id: 'n104',
+            type: 'note-video',
+            info: {
+                url: 'https://www.youtube.com/watch?v=oLDqCbv0FBQ'
+            }
+        },
         ]
         utilService.save(NOTES_KEY, notes)
     }
