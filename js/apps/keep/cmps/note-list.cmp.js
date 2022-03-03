@@ -8,7 +8,7 @@ export default {
             <div v-for="note in notes" class="note" :class="note.type" :key="note.id">
                 <router-link :to="'/keep/'+note.type+'/'+note.id">
                     <note-preview :note="note"></note-preview>
-                    <button @click.stop="deleteNote(note.id)">delete</button>
+                    <button class="delete-btn icon" @click.stop="deleteNote(note.id)"></button>
                 </router-link>
             </div>
         </section>
