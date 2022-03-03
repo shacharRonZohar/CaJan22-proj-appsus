@@ -6,6 +6,10 @@ export default {
     template: `
         <section class="email-app">
             <nav class="side-nav">
+                <router-link class="btn compose" :to="composeUrl">
+                    <div class="icon"></div>
+                    Compose
+                </router-link>
                 <router-link class="inbox" to="/email/inbox">
                     <div class="icon"></div>
                     Inbox <span>{{formattedNumOfUnread}}</span>
@@ -78,6 +82,15 @@ export default {
         },
         formattedNumOfUnread() {
             return this.numOfUnread ? this.numOfUnread : ''
+        },
+        composeUrl() {
+            let url = ''
+            // console.log(this.$route.status)
+            if (this.$route.params.emailId) url += this.$route.params.emailId + '/'
+            else if (this.$route.params.status) url += this.$route.params.status + '/'
+            url += 'compose'
+            console.log(url)
+            return url
         }
     },
 }

@@ -7,7 +7,7 @@
     align-items: center;
 }
 
-.email-app .side-nav>* {
+.email-app .side-nav>*:not(.compose) {
     display: flex;
     align-items: center;
     gap: 15px;
@@ -22,6 +22,10 @@
 .email-app .side-nav>*:hover {
     background-color: var(--clr4);
 
+}
+
+.email-app .compose .icon {
+    background-image: url(../../../assets/icons/add-with-color.png);
 }
 
 .email-app .inbox .icon {
