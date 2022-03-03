@@ -21,7 +21,7 @@ export default {
                 </router-link>
             </nav>
             <router-view @read="onRead" class="email-content" :emails="emails" />
-            <email-compose v-if="isCompose"></email-compose>
+            <email-compose @sent="onSent" @close="closeCompose" v-if="isCompose"></email-compose>
         </section>
     `,
     components: {
@@ -85,6 +85,13 @@ export default {
                         .then(() => this.loadEmails())
                 })
         },
+        closeCompose() {
+            this.$router.push(this.$route.fullPath.replace('/compose', ''))
+        },
+        onSent() {
+            this.loadEmails()
+            this.closeCompose()
+        }
     },
     computed: {
         getComposePath() {

@@ -3,7 +3,7 @@ import { utilService } from '../../../services/utilService.js'
 import { emailService } from '../services/emailService.js'
 
 export default {
-    props: [''],
+    props: ['emails'],
     emits: [''],
     template: `
         <section v-if="email" class="email-details">

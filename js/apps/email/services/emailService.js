@@ -59,7 +59,7 @@ function send(email) {
     email.from = loggedInUser
     email.isRead = true
     email = _setStatus(email)
-    post(email)
+    return post(email)
 }
 function getNewEmail() {
     return Promise.resolve({
