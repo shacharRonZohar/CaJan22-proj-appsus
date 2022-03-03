@@ -13,3 +13,12 @@
     top: 73px;
     left: 0;
 }
+
+.logo {
+    background-image: url(../../assets/imgs/logo.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 65px;
+    width: 80px;
+    /* width: 100%; */
+}

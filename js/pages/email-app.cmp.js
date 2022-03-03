@@ -1,5 +1,6 @@
 import { emailService } from "../apps/email/services/emailService.js"
 import emailList from "../apps/email/cmps/email-list.cmp.js"
+import emailCompose from "../apps/email/cmps/email-compose.cmp.js"
 
 export default {
     emits: [''],
@@ -20,10 +21,12 @@ export default {
                 </router-link>
             </nav>
             <router-view @read="onRead" class="email-content" :emails="emails" />
+            <email-compose v-if="isCompose"></email-compose>
         </section>
     `,
     components: {
-        emailList
+        emailList,
+        emailCompose
     },
     data() {
         return {
@@ -35,7 +38,8 @@ export default {
                 isStared: true, // (optional property, if missing: show all) 
                 lables: ['important', 'romantic'] // has any of the labels 
             },
-            numOfUnread: 0
+            numOfUnread: 0,
+            isCompose: null
         }
     },
     created() {
@@ -46,6 +50,12 @@ export default {
             handler() {
                 this.criteria.status = this.$route.params.status
                 this.loadEmails()
+            },
+            immediate: true,
+        },
+        '$route.fullPath': {
+            handler() {
+                this.isCompose = this.$route.fullPath.includes('compose') ? true : false
             },
             immediate: true,
         },
