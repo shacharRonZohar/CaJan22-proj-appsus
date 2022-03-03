@@ -21,6 +21,13 @@
                 0 1px 3px 1px rgb(60 64 67 / 15%);
 }
 
+.note-list .note .delete-btn{
+    cursor: pointer;
+    background-image: url(../../../assets/icons/delete.svg);
+    border: none;
+    background-color: #fff;
+}
+
 .note.note-video {
     width: 340px;
 }

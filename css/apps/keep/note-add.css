@@ -1,0 +1,24 @@
+
+/* .note-add .take-note .add-btn,
+.note-add .take-note .txt-btn,
+.note-add .take-note .img-btn,
+.note-add .take-note .vid-btn {
+    cursor: pointer;
+    border: none;
+    background-color: #fff;
+} */
+.note-add .take-note .add-btn{
+    background-image: url(../../../assets/icons/plus.svg);
+}
+
+.note-add .take-note .txt-btn {
+    background-image: url(../../../assets/icons/edit.svg);
+}
+
+.note-add .take-note .img-btn {
+    background-image: url(../../../assets/icons/image.svg);
+}
+
+.note-add .take-note .vid-btn {
+    background-image: url(../../../assets/icons/vid.svg);
+}
