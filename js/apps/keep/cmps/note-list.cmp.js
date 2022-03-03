@@ -5,10 +5,11 @@ export default {
     props: ['notes'],
     template: `
         <section class="note-list">
-            <div @click="editNote(note.id)" v-for="note in notes" class="note" :key="note.id">
-                <note-preview :note="note"></note-preview>
-                <button @click.stop="deleteNote(note.id)">delete</button>
-
+            <div v-for="note in notes" class="note" :key="note.id">
+                <router-link :to="'/keep/'+note.type+'/'+note.id">
+                    <note-preview :note="note"></note-preview>
+                    <button @click.stop="deleteNote(note.id)">delete</button>
+                </router-link>
             </div>
         </section>
    `,
@@ -17,7 +18,7 @@ export default {
     },
     data() {
         return {
-
+            noteToEdit: null
         }
     },
     methods: {
@@ -27,6 +28,10 @@ export default {
         },
         deleteNote(noteId) {
             eventBus.emit('deleteNote', noteId)
+        },
+        getNotePath(note){
+            console.log(`${note.type}/${note.id}`)
+            return `${note.type}/${note.id}`
         }
 
     },

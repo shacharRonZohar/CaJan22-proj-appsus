@@ -14,8 +14,9 @@ export default {
                 </ul>
             </nav>
             <div class="main-content">
-                <note-add @noteAdded="updateNotes"></note-add>
-                <note-list :notes="notes"></note-list>
+                <note-add class="note-add" @noteAdded="updateNotes"></note-add>
+                <!-- <router-view :notes="notes"></router-view> -->
+                <note-list class="note-list" :notes="notes"></note-list>
             </div>
             <!-- <pre>{{notes}}</pre> -->
         </section>
