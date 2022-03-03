@@ -1,6 +1,6 @@
 
 export default {
-    props: ['note'],
+    props: ['info'],
     template: `
         <section class="note-txt">
             <span class="title">{{getNoteTitle}}</span>
@@ -17,11 +17,11 @@ export default {
     },
     computed: {
         getNoteTitle() {
-            return (this.note.info.title) ? this.note.info.title : 'No title'
+            return (this.info.title) ? this.info.title : 'No title'
             // if (this.note.info.title) return this.note.info.title
         },
         getNoteTxt() {
-            return (this.note.info.txt) ? this.note.info.txt : '__'
+            return (this.info.txt) ? this.info.txt : '__'
         }
     },
 }
