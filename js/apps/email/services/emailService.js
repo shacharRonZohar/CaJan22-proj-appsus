@@ -8,10 +8,10 @@ export const emailService = {
     query,
     remove,
     postMany,
-    toggleRead
+    toggleRead,
+    getNumOfUnread
 }
 const EMAIL_KEY = 'mailDB'
-
 
 const loggedInUser = {
     email: 'user@appsus.com',
@@ -24,7 +24,6 @@ const otherUser = {
 }
 
 _createEmails()
-
 
 function query(criteria) {
     return storageService.query(EMAIL_KEY)
@@ -68,6 +67,10 @@ function getEmptyEmail() {
     }
 }
 
+function getNumOfUnread() {
+    return query({ status: 'inbox' })
+        .then(emails => emails.filter(email => !email.isRead).length)
+}
 function toggleRead(email) {
     email.isRead = !email.isRead
     return put(email)

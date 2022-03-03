@@ -45,15 +45,17 @@ export default {
             },
             immediate: true,
         },
-        'this.emails': {
+        'emails': {
             handler() {
-                if (this.criteria.status !== 'inbox' || !this.emails) return
-                // if () retur
-                console.log(this.emails)
-                this.numOfUnread = this.emails.filter(email => email.isRead).length
+                // console.log(this.emails)
+                // console.log(oldValue, newValue)
+                if (!this.emails) return
+                emailService.getNumOfUnread()
+                    .then(numOfUnread => this.numOfUnread = numOfUnread)
+                // = this.emails.filter()
             },
+            deep: true,
             immediate: true,
-            deep: true
         }
     },
     methods: {
@@ -62,7 +64,7 @@ export default {
                 .then(emails => this.emails = emails)
         },
         onRead(id) {
-            console.log(id)
+            // console.log(id)
             emailService.get(id)
                 .then(email => {
                     if (!email.isRead) emailService.toggleRead(email)
