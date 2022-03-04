@@ -11,7 +11,7 @@ export default {
         <section class="keep-app">
                 <note-add v-if="!isAddingNote" @addRequest="onAddRequest" class="note-add"></note-add>
                 <component v-else :is="selectedType" @noteAdded="addNote"></component>
-
+                
                 <!-- <router-view :notes="notes"></router-view> -->
                 <note-list class="note-list" :notes="notes"></note-list>
         </section>
@@ -54,7 +54,8 @@ export default {
 
             noteService.getEmptyNote(noteParams.type)
                 .then(newNote=>{
-                    newNote.info = noteParams.noteData
+                    newNote.info = noteParams.noteData.info
+                    newNote.style = noteParams.noteData.style
                     noteService.addNote(newNote)
                         .then(()=>this.updateNotes())
                 })

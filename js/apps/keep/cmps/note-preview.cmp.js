@@ -6,7 +6,7 @@ export default {
     props: ['note'],
     template: `
         <article >
-            <component :is="note.type" :info="note.info"></component>
+            <component :is="note.type" :info="note.info" ></component>
             <!-- <note-txt :note="note"></note-txt> -->
         </article>
 
@@ -27,6 +27,10 @@ export default {
 
     },
     computed: {
-
+        formattedStyle(){
+            if(this.note.style){
+                return this.note.style.backgroundColor ? this.note.style.backgroundColor : '#fff'
+            }
+        }
     },
 }

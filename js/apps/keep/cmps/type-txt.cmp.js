@@ -7,8 +7,9 @@ export default {
             <div class="write">
                 <!-- <button>Pin</button>  -->
                 <form @submit.prevent="onSubmit">
-                    <input v-model="noteData.title" type="text" placeholder="Title"> <br>
-                    <textarea v-model="noteData.txt" name="" id="" cols="30" rows="7" placeholder="Take a note..."></textarea>
+                    <input v-model="noteData.info.title" type="text" placeholder="Title"> <br>
+                    <textarea v-model="noteData.info.txt" name="" id="" cols="30" rows="7" placeholder="Take a note..."></textarea>
+                    <input type="color" name="background-color" id="background-color" v-model="noteData.style.backgroundColor">
                     <button>Add</button> 
                 </form>
                 <!-- <button>color</button>
@@ -20,14 +21,19 @@ export default {
     data() {
         return {
             noteData: {
-                title: null,
-                txt: null,
+                info: {
+                    title: null,
+                    txt: null,
+                },
+                style:{
+                    backgroundColor: null
+                }
             }
         }
     },
     methods: {
-        onSubmit(){
-            this.$emit('noteAdded', {type: 'note-txt', noteData:this.noteData})
+        onSubmit() {
+            this.$emit('noteAdded', { type: 'note-txt', noteData: this.noteData })
         }
     },
     computed: {
