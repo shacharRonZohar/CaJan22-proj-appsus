@@ -52,9 +52,13 @@ export default {
             emails: null,
             criteria: {
                 status: 'inbox',
-                txt: '', // no need to support complex text search 
+                txt: '',
                 isStared: true, // (optional property, if missing: show all) 
-                lables: ['important', 'romantic'] // has any of the labels 
+                lables: ['important', 'romantic'], // has any of the labels 
+                sort: {
+                    by: 'title',
+                    isAsc: false
+                }
             },
             numOfUnread: 0,
             isCompose: null

@@ -74,11 +74,10 @@ Array.prototype.autoSortObj = function (objKey, sortType, isAsc) {
 		return this.sort(
 			(a, b) => a[objKey].toUpperCase().localeCompare(b[objKey].toUpperCase()) * sortDir
 		)
-	else if (typeof sortType === 'number') return this.sort((a, b) => a[objKey] - b[objKey] * sortDir)
+	else if (typeof sortType === 'number') return this.sort((a, b) => (a[objKey] - b[objKey]) * sortDir)
 }
 
 Array.prototype.formatAsString = function () {
-
 	let joinSymb = ', '
 	if (this.length === 1) joinSymb = ''
 	return this.join(joinSymb)
