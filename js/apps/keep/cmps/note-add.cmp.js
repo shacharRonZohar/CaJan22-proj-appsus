@@ -2,6 +2,7 @@ import { noteService } from "../services/noteService.js"
 
 export default {
     props: [],
+    emits: ['noteAdded', 'addRequest'],
     template: `
     <section class="note-add">
         <div class="take-note">
@@ -9,22 +10,22 @@ export default {
                 <div>
                     <!-- <input v-model="newNote.info.title" type="text" placeholder="Title"> -->
                     <input v-model="newNote.info.txt" type="text" placeholder="Take a note...">
-                    <!-- <component></component> -->
+                    
                     <button class="add-btn btn icon" @click.prevent="addNote" title="Add Note"></button>
-                    <button class="txt-btn btn icon" @click.prevent="setTxtType" title="Text Note"></button>
-                    <button class="img-btn btn icon" @click.prevent="setImgType" title="Image Note"></button>
-                    <button class="vid-btn btn icon" @click.prevent="setVidType" title="Video Note"></button>
+
+                    <button class="txt-btn btn icon" @click.prevent="onSetNoteType('note-txt')" title="Text Note"></button>
+                    <button class="img-btn btn icon" @click.prevent="onSetNoteType('note-img')" title="Image Note"></button>
+                    <button class="vid-btn btn icon" @click.prevent="onSetNoteType('note-video')" title="Video Note"></button>
                 </div>
                 
             </form>
-            <!-- <pre>{{newNote}}</pre> -->
+            <pre>{{newNote}}</pre>
         </div>
     </section>
    `,
     data() {
         return {
             newNote: noteService.getEmptyNote('note-txt'),
-            isTakeNote: false,
         }
     },
     created() {
@@ -35,19 +36,15 @@ export default {
         addNote() {
             noteService.addNote(this.newNote).then((note) => this.$emit('noteAdded', note));
             
+            console.log(this.newNote);
             // Reset the input
             this.newNote = noteService.getEmptyNote('note-txt')
         },
-        setTxtType() {
-            this.newNote = noteService.getEmptyNote('note-txt')
+        onSetNoteType(type){
+            this.newNote = noteService.getEmptyNote(type)
+            type = type.replace(/note/g, 'type')
+            // console.log(type);
+            this.$emit('addRequest', type)
         },
-        setImgType() {
-            this.newNote = noteService.getEmptyNote('note-img')
-        },
-        setVidType() {
-            this.newNote = noteService.getEmptyNote('note-video')
-        }
-    },
-    computed: {
     },
 }
