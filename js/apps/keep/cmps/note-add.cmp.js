@@ -9,7 +9,7 @@ export default {
                 <div>
                     <!-- <input v-model="newNote.info.title" type="text" placeholder="Title"> -->
                     <input v-model="newNote.info.txt" type="text" placeholder="Take a note...">
-
+                    <!-- <component></component> -->
                     <button class="add-btn btn icon" @click.prevent="addNote" title="Add Note"></button>
                     <button class="txt-btn btn icon" @click.prevent="setTxtType" title="Text Note"></button>
                     <button class="img-btn btn icon" @click.prevent="setImgType" title="Image Note"></button>
@@ -17,13 +17,14 @@ export default {
                 </div>
                 
             </form>
-            <pre>{{newNote}}</pre>
+            <!-- <pre>{{newNote}}</pre> -->
         </div>
     </section>
    `,
     data() {
         return {
-            newNote: noteService.getEmptyNote('note-txt')
+            newNote: noteService.getEmptyNote('note-txt'),
+            isTakeNote: false,
         }
     },
     created() {
