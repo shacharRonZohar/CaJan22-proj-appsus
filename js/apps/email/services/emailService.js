@@ -28,10 +28,20 @@ const otherUser = {
 _createEmails()
 
 function query(criteria) {
+    // console.log(criteria.isRead)
     return storageService.query(EMAIL_KEY)
-        .then(emails => emails.filter(email => {
-            return email.status === criteria.status
-        }))
+        .then(emails => {
+            // if (criteria.txt) var criteriaRegex = new RegExp(criteria.txt)
+            // console.log(regex)
+            return emails.filter(email => {
+                let isMatch = (criteria.status === email.status) &&
+                    email.body.toLowerCase().includes(criteria.txt.toLowerCase())
+                if (criteria.isRead && isMatch) {
+                    isMatch = (email.isRead === criteria.isRead)
+                }
+                return isMatch
+            })
+        })
 }
 
 function get(mailId) {
@@ -57,7 +67,7 @@ function remove(mailId) {
 function send(email) {
     email.sentAt = Date.now()
     email.from = loggedInUser
-    email.isRead = true
+    email.isRead = 'read'
     email = _setStatus(email)
     return post(email)
 }
@@ -72,11 +82,13 @@ function getNewEmail() {
 }
 
 function getNumOfUnread() {
-    return query({ status: 'inbox' })
-        .then(emails => emails.filter(email => !email.isRead).length)
+    return query({ status: 'inbox', txt: '' })
+        .then(emails => emails.filter(email => email.isRead === 'unread').length)
 }
 function toggleRead(email) {
-    email.isRead = !email.isRead
+    email.isRead = email.isRead === 'read' ? 'unread' : 'read'
+    console.log(email.isRead)
+    // email.isRead = !email.isRead
     return put(email)
 }
 function _setStatus(email) {
@@ -107,7 +119,7 @@ function _getDemoEmails(isRecieved) {
             id: utilService.makeExtId(),
             subject: 'Miss you!',
             body: 'Would love to catch up sometimes',
-            isRead: isRecieved ? false : true,
+            isRead: isRecieved ? 'unread' : 'read',
             sentAt: Math.random() > 0.5 ? Date.now() : 1646229756255,
             to: isRecieved ? loggedInUser : otherUser,
             from: isRecieved ? otherUser : loggedInUser
