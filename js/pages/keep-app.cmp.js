@@ -8,7 +8,7 @@ export default {
         <section class="keep-app">
             <div class="main-content">
                 <note-add class="note-add" @noteAdded="updateNotes"></note-add>
-                <!-- <router-view :notes="notes"></router-view> -->
+                <router-view :notes="notes"></router-view>
                 <note-list class="note-list" :notes="notes"></note-list>
             </div>
         </section>
