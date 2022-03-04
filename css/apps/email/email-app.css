@@ -2,5 +2,14 @@
     /* grid-column: 3 / span 27; */
     /* margin-right: 10px; */
     display: grid;
-    grid-template: repeat(15, 1fr) / repeat(15, 1fr);
+    grid-template: repeat(31, 1fr) / repeat(31, 1fr);
+}
+
+.email-app .email-search {
+    grid-area: 1 / 7 / span 3 /span 15;
+    background-color: var(--clr10);
+    border-radius: 15px;
+    font-size: 1.0625rem;
+    line-height: 27px;
+    padding-left: 15px
 }

@@ -23,6 +23,14 @@ export default {
                     <div class="sent">Sent</div>
                 </router-link>
             </nav>
+            <input type="text" 
+            name="email-search" 
+            id="email-search" 
+            class="email-search"
+            placeholder="Search in email" />
+            <div class="list-header">
+
+            </div>
             <router-view @read="onRead" class="email-content" :emails="emails" />
             <email-compose @sent="onSent" @close="closeCompose" v-if="isCompose"></email-compose>
         </section>

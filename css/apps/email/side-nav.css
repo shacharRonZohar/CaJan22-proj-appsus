@@ -1,5 +1,5 @@
 .email-app .side-nav {
-    grid-area: 1 / 1 / span 15 / span 3;
+    grid-area: 1 / 1 / span 31 / span 6;
     /* background-color: purple; */
     display: flex;
     flex-direction: column;
