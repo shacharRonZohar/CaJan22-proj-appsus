@@ -35,7 +35,7 @@ export default {
                     placeholder="Search in email" />
             </form>
             <div name="filterSelect" id="filterSelect" class="icon filter">
-                <select v-model="criteria.isRead" name="is-read" id="is-read">
+                <select @change="loadEmails()" v-model="criteria.isRead" name="is-read" id="is-read">
                     <option value="">All</option>
                     <option value="read">Read</option>
                     <option value="unread">Unread</option>
