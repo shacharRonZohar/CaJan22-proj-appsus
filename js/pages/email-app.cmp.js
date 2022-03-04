@@ -23,21 +23,29 @@ export default {
                     <div class="sent">Sent</div>
                 </router-link>
             </nav>
-            <form @submit.prevent="loadEmails" class="email-search-container">
+            <section class="email-search-container">
+            <form @submit.prevent="loadEmails" class="email-search-form">
                 <button class="btn icon search"></button>
                 <input
-                v-model="criteria.txt"
-                type="text" 
-                name="email-search" 
-                id="email-search" 
-                class="email-search"
-                placeholder="Search in email" />
-                <select v-model="criteria.isRead" name="filterSelect" id="filterSelect" class="icon filter">
+                    v-model="criteria.txt"
+                    type="text" 
+                    name="email-search" 
+                    id="email-search" 
+                    class="email-search"
+                    placeholder="Search in email" />
+            </form>
+            <div name="filterSelect" id="filterSelect" class="icon filter">
+                <select @change="loadEmails()" v-model="criteria.isRead" name="is-read" id="is-read">
                     <option value="">All</option>
                     <option value="read">Read</option>
                     <option value="unread">Unread</option>
                 </select>
-            </form>
+                <div class="set-sort-container">
+                    <div @click.stop="onSetSort('title')">Title</div>
+                    <div @click.stop="onSetSort('sentAt')">Date</div>
+                </div>
+            </div>
+        </section>
             <div class="list-header"></div>
             <router-view @removed="onRemoved" @read="onRead" class="email-content" :emails="emails" />
             <email-compose @sent="onSent" @close="closeCompose" v-if="isCompose"></email-compose>
@@ -52,9 +60,13 @@ export default {
             emails: null,
             criteria: {
                 status: 'inbox',
-                txt: '', // no need to support complex text search 
+                txt: '',
                 isStared: true, // (optional property, if missing: show all) 
-                lables: ['important', 'romantic'] // has any of the labels 
+                lables: ['important', 'romantic'], // has any of the labels 
+                sort: {
+                    by: 'title',
+                    isAsc: false
+                }
             },
             numOfUnread: 0,
             isCompose: null
@@ -125,6 +137,11 @@ export default {
             console.log(id, 'App')
             emailService.remove(id)
                 .then(() => this.loadEmails())
+        },
+        onSetSort(sortBy) {
+            if (this.criteria.sort.by === sortBy) this.criteria.sort.isAsc = !this.criteria.sort.isAsc
+            this.criteria.sort.by = sortBy
+            this.loadEmails()
         }
     },
     computed: {

@@ -31,8 +31,7 @@ function query(criteria) {
     // console.log(criteria.isRead)
     return storageService.query(EMAIL_KEY)
         .then(emails => {
-            // if (criteria.txt) var criteriaRegex = new RegExp(criteria.txt)
-            // console.log(regex)
+            // Filter
             return emails.filter(email => {
                 let isMatch = (criteria.status === email.status) &&
                     email.body.toLowerCase().includes(criteria.txt.toLowerCase())
@@ -41,6 +40,12 @@ function query(criteria) {
                 }
                 return isMatch
             })
+        })
+        .then(emails => {
+            // Sort
+            if (!criteria.sort) return emails
+            const sortType = criteria.sortBy === 'title' ? '' : 1
+            return emails.autoSortObj(criteria.sort.by, sortType, criteria.sort.isAsc)
         })
 }
 
