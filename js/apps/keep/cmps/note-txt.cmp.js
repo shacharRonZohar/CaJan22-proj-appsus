@@ -4,7 +4,7 @@ export default {
     template: `
         <section class="note-txt">
             <span class="title">{{getNoteTitle}}</span>
-            <p class="txt">{{getNoteTxt}}</p>
+            <span class="txt">{{getNoteTxt}}</span>
         </section>
    `,
     data() {

@@ -4,9 +4,12 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 10px;
+    /* column-count: 4; */
+    /* break-inside: avoid; */
     flex-grow: 9;
     padding: 15px;
     overflow-y: scroll;
+    /* overflow-x: scroll; */
 }
 
 .note-list .note {
@@ -15,6 +18,10 @@
     border: 1px solid var(--clr8);
     border-radius: 5px;
     padding: 15px;
+    /* display: inline-block; */    
+}
+.note .note-txt .txt {
+    overflow-wrap: break-word;
 }
 
 .note-list .note:hover {
