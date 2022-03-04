@@ -48,10 +48,12 @@ export default {
                 .then(this.updateNotes)
         },
         onAddRequest(cmp) {
-            this.isAddingNote = !this.isAddingNote
+            this.isAddingNote = true
             this.selectedType = cmp
         },
         addNote(noteParams){
+            this.isAddingNote = false
+
             noteService.getEmptyNote(noteParams.type)
                 .then(newNote=>{
                     newNote.info = noteParams.noteData

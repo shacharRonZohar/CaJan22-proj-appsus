@@ -27,7 +27,7 @@ export default {
     },
     methods: {
         onSubmit(){
-            this.$emit('noteAdded', {type: 'note-txt',noteData:this.noteData})
+            this.$emit('noteAdded', {type: 'note-txt', noteData:this.noteData})
         }
     },
     computed: {
