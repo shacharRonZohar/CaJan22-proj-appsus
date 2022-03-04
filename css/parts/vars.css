@@ -18,4 +18,12 @@
     --clr9: #5f6368;
     /* Search Background */
     --clr10: #f1f3f4;
+    /* Compose header */
+    --clr11: #404040;
+    /* Font Color */
+    --clr12: #868686;
+    /* Secondary font color */
+    --clr13: #202124;
+    /* Third font color */
+    --clr14: #555555;
 }

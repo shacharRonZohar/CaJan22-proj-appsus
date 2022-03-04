@@ -5,24 +5,28 @@ export default {
     emits: ['close', 'sent'],
     template: `
             <section class="email-compose">
-                <header>New Message <button @click="close" class="close"></button></header>
-                <form @submit.prevent="sendEmail" v-if="newEmail">
+                <div class="header-container">
+                    <header class="layout">
+                        <div @click="close" class="close-container click">
+                            <div class=" close icon"></div>
+                        </div>
+                    </header>
+                </div>
+                <form @submit.prevent="sendEmail" v-if="newEmail" class="layout">
                     <label for="to">
                         To
                         <input id="to" name="to" type="text" v-model="newEmail.to.email">
                     </label>
-                    <label for="subject">
-                        Subject
-                        <input id="subject" type="text" v-model="newEmail.subject">
-                    </label>
+                    <input id="subject" type="text" v-model="newEmail.subject" placeholder="Subject">
                     <textarea 
                         name="body" 
                         id="body" 
                         cols="30" 
                         rows="10" 
-                        v-model="newEmail.body">
+                        v-model="newEmail.body"
+                        class="body">
                     </textarea>
-                    <button class="send">Send</button>
+                    <button class="btn send-email">Send</button>
                 </form>
             </section>
     `,

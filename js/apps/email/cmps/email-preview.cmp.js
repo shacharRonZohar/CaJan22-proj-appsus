@@ -5,8 +5,8 @@ export default {
     emits: [''],
     template: `
         <section class="email-preview" :class="isRead">
-            <input type="checkbox" class="select-email" />
-            <div class="star icon"></div>
+            <input @click.stop type="checkbox" class="select-email" />
+            <div  @click.stop class="star icon"></div>
             <span class="name-txt">{{email.from.fullName}}</span>
             <div class="txt-container">
                 <span class="subject">{{subjectTxt}}</span>

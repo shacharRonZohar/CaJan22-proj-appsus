@@ -6,9 +6,32 @@
 .email-details header {
     flex-grow: 1;
     border-bottom: 1px solid var(--clr2);
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+    flex-direction: column;
 }
 
-.email-details .body-preview {
+.email-details header .subject {
+    font-family: roboto-m, sans-serif;
+    color: var(--clr13);
+    font-size: 1.4rem;
+}
+
+.email-details header .name {
+    font-family: roboto-b, sans-serif;
+    margin-inline-end: 10px;
+}
+
+.email-details header .email {
+    color: var(--clr14);
+}
+
+.email-details .email-body {
     overflow-y: hidden;
     flex-grow: 20;
+}
+
+.email-details .sent-at {
+    align-self: flex-end;
 }

@@ -9,11 +9,18 @@ export default {
         <section v-if="email" class="email-details">
             <header class="email-header">
                 <span class="subject">{{subjectTxt}}</span>
-                <span class="from">{{email.from.fullName}} {{email.from.email}}</span>
-                <span class="to">{{email.to.fullName}}</span>
+                <div class="from">
+                    <span class="name">
+                        {{email.from.fullName}}
+                    </span>
+                    <small class="email">
+                        <{{email.from.email}}>
+                    </small>
+                </div>
                 <span class="sent-at">{{formattedTime}}</span>
+                <span class="to">{{email.to.fullName}}</span>
             </header>
-            <div class="body-preview">{{email.body}}</div>
+            <pre class="email-body">{{email.body}}</pre>
         </section>
     `,
     components: {
