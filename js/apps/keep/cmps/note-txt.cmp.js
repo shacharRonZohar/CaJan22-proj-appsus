@@ -3,7 +3,7 @@ export default {
     props: ['info'],
     template: `
         <section class="note-txt">
-            <span class="title">{{getNoteTitle}}</span>
+            <span class="title">{{getNoteTitle}}</span><br>
             <span class="txt">{{getNoteTxt}}</span>
         </section>
    `,
