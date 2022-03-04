@@ -7,31 +7,31 @@ export default {
     template: `
         <section class="email-app">
             <nav class="side-nav">
-                <router-link class="btn compose" :to="getComposePath">
+                <router-link class="btn compose" :to="composePath">
                     <div class="icon"></div>
                     Compose
                 </router-link>
-                <router-link class="inbox" to="/email/inbox">
+                <router-link class="inbox" :to="getPath('inbox')">
                     <div class="icon"></div>
                     <div class="txt-container">
                         <span>Inbox</span>
                         <span>{{formattedNumOfUnread}}</span>
                     </div>
                 </router-link>
-                <router-link class="sent" to="/email/sent">
+                <router-link class="sent" :to="getPath('sent')">
                     <div class="icon"></div>
                     <div class="sent">Sent</div>
                 </router-link>
             </nav>
-            <input type="text" 
+            <input
+            v-model="criteria.txt"
+            type="text" 
             name="email-search" 
             id="email-search" 
             class="email-search"
             placeholder="Search in email" />
-            <div class="list-header">
-
-            </div>
-            <router-view @read="onRead" class="email-content" :emails="emails" />
+            <div class="list-header"></div>
+            <router-view @removed="onRemoved" @read="onRead" class="email-content" :emails="emails" />
             <email-compose @sent="onSent" @close="closeCompose" v-if="isCompose"></email-compose>
         </section>
     `,
@@ -89,12 +89,23 @@ export default {
                 .then(emails => this.emails = emails)
         },
         onRead(id) {
-            // console.log(id)
             emailService.get(id)
                 .then(email => {
-                    if (!email.isRead) emailService.toggleRead(email)
+                    if (email.isRead) return
+                    return emailService.toggleRead(email)
                         .then(() => this.loadEmails())
                 })
+                .then(() => this.$router.push(this.getIdPath(id)))
+        },
+        getIdPath(id) {
+            let path = this.$route.fullPath
+            if (!/compose/g.test(path)) return path + '/' + id
+            return path.replace(/compose/g, id) + '/compose'
+        },
+        getPath(mainPath) {
+            let composePath = ''
+            if (this.$route.fullPath.includes('compose')) composePath = '/compose'
+            return `/email/${mainPath}${composePath}`
         },
         closeCompose() {
             this.$router.push(this.$route.fullPath.replace('/compose', ''))
@@ -102,16 +113,19 @@ export default {
         onSent() {
             this.loadEmails()
             this.closeCompose()
+        },
+        onRemoved(id) {
+            console.log(id, 'App')
+            emailService.remove(id)
+                .then(() => this.loadEmails())
         }
     },
     computed: {
-        getComposePath() {
+        composePath() {
             if (this.$route.fullPath.includes('compose')) return this.$route.fullPath
             return this.$route.fullPath + '/compose'
-            this.$route.params.compose = 'compose'
-            // this.$router.push(`${this.$route.fullPath}/compose`)
-            this.$router.push(this.$route.fullPath)
         },
+
         getCriteria() {
 
         },

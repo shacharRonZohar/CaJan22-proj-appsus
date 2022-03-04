@@ -2,11 +2,11 @@ import { utilService } from '../../../services/utilService.js'
 
 export default {
     props: ['email'],
-    emits: [''],
+    emits: ['removed'],
     template: `
         <section class="email-preview" :class="isRead">
             <input @click.stop type="checkbox" class="select-email" />
-            <div  @click.stop class="star icon"></div>
+            <div  @click.stop class="star icon click"></div>
             <span class="name-txt">{{email.from.fullName}}</span>
             <div class="txt-container">
                 <span class="subject">{{subjectTxt}}</span>
@@ -14,6 +14,9 @@ export default {
                 <span class="body-preview">{{email.body}}</span>
             </div>
             <span class="sent-at">{{formattedTime}}</span>
+            <div class="actions">
+                <div @click.stop="onRemove" class="icon delete click">D</div>
+            </div>
         </section>
     `,
     components: {
@@ -31,7 +34,9 @@ export default {
     },
 
     methods: {
-
+        onRemove() {
+            this.$emit('removed', this.email.id)
+        }
     },
     computed: {
         subjectTxt() {
