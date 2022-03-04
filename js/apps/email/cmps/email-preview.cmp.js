@@ -4,7 +4,7 @@ export default {
     props: ['email'],
     emits: ['removed'],
     template: `
-        <section class="email-preview" :class="isRead">
+        <section class="email-preview click" :class="isRead">
             <input @click.stop type="checkbox" class="select-email" />
             <div  @click.stop class="star icon click"></div>
             <span class="name-txt">{{email.from.fullName}}</span>
