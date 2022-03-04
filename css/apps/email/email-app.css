@@ -16,7 +16,7 @@
     align-items: center;
 }
 
-.email-app .email-search-container>* {
+.email-app .email-search-container .email-search-form>* {
     background-color: inherit;
     flex-grow: 1;
 }
