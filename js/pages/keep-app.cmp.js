@@ -9,13 +9,11 @@ import typeVideo from '../apps/keep/cmps/type-video.cmp.js'
 export default {
     template: `
         <section class="keep-app">
-            <div class="main-content">
                 <note-add v-if="!isAddingNote" @addRequest="onAddRequest" class="note-add"></note-add>
                 <component v-else :is="selectedType" @noteAdded="addNote"></component>
 
                 <!-- <router-view :notes="notes"></router-view> -->
                 <note-list class="note-list" :notes="notes"></note-list>
-            </div>
         </section>
     `,
     components: {

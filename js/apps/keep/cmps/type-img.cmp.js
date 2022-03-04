@@ -9,6 +9,7 @@ export default {
                     <input v-model="noteData.title" type="text" placeholder="Title"> <br>                    
                     <button>Add</button>
                 </form>
+                <!-- <button>From cmp</button> -->
                 <button>color</button>
                 <button class="btn">Close</button>
             </div>
