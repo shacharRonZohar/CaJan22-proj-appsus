@@ -3,7 +3,7 @@
     display: flex;
     width: 100%;
     flex-direction: column;
-    grid-area: 1 / 4 / span 15 / span 15;
+    grid-area: 5 / 7 / span 31 / span 25;
     display: flex;
     overflow-y: auto;
     overflow-x: hidden;
