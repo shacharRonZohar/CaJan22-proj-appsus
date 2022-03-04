@@ -9,6 +9,7 @@ html {
 body {
 	margin: 0;
 	background-color: var(--clr1);
+	overflow-x: hidden;
 }
 
 ul {
