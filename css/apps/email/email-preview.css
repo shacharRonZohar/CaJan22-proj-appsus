@@ -1,12 +1,22 @@
 .email-preview {
-    display: flex;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr 3fr 7fr 2fr;
     width: 100%;
     height: 40px;
     align-items: center;
-    gap: 10px;
+    /* gap: 10px; */
     padding-left: 10px;
     border-bottom: 1px solid var(--clr2);
+    position: relative;
+}
+
+/* .email-preview>* {
+    flex-grow: 1;
+} */
+
+.email-preview .sent-at {
+    justify-self: flex-end;
+    margin-right: 5px;
 }
 
 .email-article:first-child .email-preview {
@@ -22,26 +32,26 @@
     background-color: var(--clr4);
 }
 
-.email-preview .icon {
+.email-preview .star.icon {
     background-image: url(../../../assets/icons/star.svg);
 }
 
-.email-preview .name-txt {
+/* .email-preview .name-txt {
     width: 170px;
-}
+} */
 
 .email-preview:not(.read) {
     font-family: roboto-b, sans-serif;
 }
 
-.email-preview .sent-at {
+/* .email-preview .sent-at {
     position: absolute;
     right: 20px;
-}
+} */
 
-.email-preview .txt-container {
+/* .email-preview .txt-container {
     max-width: 620px;
-}
+} */
 
 .email-preview .txt-container,
 .email-preview .subject,
