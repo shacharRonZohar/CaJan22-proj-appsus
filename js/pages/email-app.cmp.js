@@ -23,13 +23,21 @@ export default {
                     <div class="sent">Sent</div>
                 </router-link>
             </nav>
-            <input
-            v-model="criteria.txt"
-            type="text" 
-            name="email-search" 
-            id="email-search" 
-            class="email-search"
-            placeholder="Search in email" />
+            <form @submit.prevent="loadEmails" class="email-search-container">
+                <button class="btn icon search"></button>
+                <input
+                v-model="criteria.txt"
+                type="text" 
+                name="email-search" 
+                id="email-search" 
+                class="email-search"
+                placeholder="Search in email" />
+                <select v-model="criteria.isRead" name="filterSelect" id="filterSelect" class="icon filter">
+                    <option value="">All</option>
+                    <option value="read">Read</option>
+                    <option value="unread">Unread</option>
+                </select>
+            </form>
             <div class="list-header"></div>
             <router-view @removed="onRemoved" @read="onRead" class="email-content" :emails="emails" />
             <email-compose @sent="onSent" @close="closeCompose" v-if="isCompose"></email-compose>
@@ -44,8 +52,7 @@ export default {
             emails: null,
             criteria: {
                 status: 'inbox',
-                txt: 'puki', // no need to support complex text search 
-                isRead: true, // (optional property, if missing: show all) 
+                txt: '', // no need to support complex text search 
                 isStared: true, // (optional property, if missing: show all) 
                 lables: ['important', 'romantic'] // has any of the labels 
             },
@@ -91,7 +98,7 @@ export default {
         onRead(id) {
             emailService.get(id)
                 .then(email => {
-                    if (email.isRead) return
+                    if (email.isRead === 'read') return
                     return emailService.toggleRead(email)
                         .then(() => this.loadEmails())
                 })

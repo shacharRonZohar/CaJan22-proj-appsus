@@ -43,7 +43,7 @@ export default {
             return this.email.subject ? this.email.subject : 'No Subject'
         },
         isRead() {
-            return { 'read': this.email.isRead }
+            return { 'read': this.email.isRead === 'read' }
         },
         formattedTime() {
             let opts = {

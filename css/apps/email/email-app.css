@@ -5,11 +5,29 @@
     grid-template: repeat(31, 1fr) / repeat(31, 1fr);
 }
 
-.email-app .email-search {
+.email-app .email-search-container {
     grid-area: 1 / 7 / span 3 /span 15;
     background-color: var(--clr10);
     border-radius: 15px;
     font-size: 1.0625rem;
     line-height: 27px;
-    padding-left: 15px
+    padding-left: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.email-app .email-search-container>* {
+    background-color: inherit;
+    flex-grow: 1;
+}
+
+.email-app .email-search-container .icon.search {
+    background-image: url(../../../assets/icons/search.svg);
+    /* background-color: inherit; */
+}
+
+.email-app .email-search-container .icon.filter {
+    appearance: none;
+    background-image: url(../../../assets/icons/filter.svg);
+    /* background-color: inherit; */
 }
