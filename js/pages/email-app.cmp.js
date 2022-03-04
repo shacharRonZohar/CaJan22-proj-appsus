@@ -24,28 +24,32 @@ export default {
                 </router-link>
             </nav>
             <section class="email-search-container">
-            <form @submit.prevent="loadEmails" class="email-search-form">
-                <button class="btn icon search"></button>
-                <input
-                    v-model="criteria.txt"
-                    type="text" 
-                    name="email-search" 
-                    id="email-search" 
-                    class="email-search"
-                    placeholder="Search in email" />
-            </form>
-            <div name="filterSelect" id="filterSelect" class="icon filter">
-                <select @change="loadEmails()" v-model="criteria.isRead" name="is-read" id="is-read">
-                    <option value="">All</option>
-                    <option value="read">Read</option>
-                    <option value="unread">Unread</option>
-                </select>
-                <div class="set-sort-container">
-                    <div @click.stop="onSetSort('title')">Title</div>
-                    <div @click.stop="onSetSort('sentAt')">Date</div>
+                <form @submit.prevent="loadEmails" class="email-search-form">
+                    <button class="btn icon search"></button>
+                    <input
+                        v-model="criteria.txt"
+                        type="text" 
+                        name="email-search" 
+                        id="email-search" 
+                        class="email-search"
+                        placeholder="Search in email" />
+                </form>
+                <div v-if="!isFilter" name="filterSelect" 
+                id="filterSelect" class="icon filter"
+                @click="toggleFilter"></div>
+                <div v-else class="filter-container">
+                    <select @change="loadEmails()" v-model="criteria.isRead" name="is-read" id="is-read">
+                        <option selected >All</option>
+                        <option value="read">Read</option>
+                        <option value="unread">Unread</option>
+                    </select>
+                    <div class="set-sort-container">
+                        <div @click.stop="onSetSort('title')">Title</div>
+                        <div @click.stop="onSetSort('sentAt')">Date</div>
+                    </div>
                 </div>
-            </div>
-        </section>
+                <div v-if="isFilter" class="filter-background" @click="toggleFilter"></div>
+            </section>
             <div class="list-header"></div>
             <router-view @removed="onRemoved" @read="onRead" class="email-content" :emails="emails" />
             <email-compose @sent="onSent" @close="closeCompose" v-if="isCompose"></email-compose>
@@ -61,7 +65,7 @@ export default {
             criteria: {
                 status: 'inbox',
                 txt: '',
-                isStared: true, // (optional property, if missing: show all) 
+                isStared: false, // (optional property, if missing: show all) 
                 lables: ['important', 'romantic'], // has any of the labels 
                 sort: {
                     by: 'title',
@@ -69,7 +73,8 @@ export default {
                 }
             },
             numOfUnread: 0,
-            isCompose: null
+            isCompose: null,
+            isFilter: false
         }
     },
     created() {
@@ -142,6 +147,9 @@ export default {
             if (this.criteria.sort.by === sortBy) this.criteria.sort.isAsc = !this.criteria.sort.isAsc
             this.criteria.sort.by = sortBy
             this.loadEmails()
+        },
+        toggleFilter() {
+            this.isFilter = !this.isFilter
         }
     },
     computed: {
