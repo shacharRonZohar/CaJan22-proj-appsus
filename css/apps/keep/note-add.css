@@ -10,6 +10,8 @@
 
 .note-add input {
     background-color: var(--clr1);
+    /* width: 40%; */
+    width: 600px;
     padding: 1rem;
     box-shadow: inset 1px 1px 0 rgb(0 0 0 / 10%), inset 0 -1px 0 rgb(0 0 0 / 7%);
     border: 1px solid transparent;

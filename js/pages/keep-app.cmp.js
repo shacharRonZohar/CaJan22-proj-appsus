@@ -10,8 +10,8 @@ export default {
     template: `
         <section class="keep-app">
             <div class="main-content">
-                <note-add v-if="!isAddingNote" @addRequest="onAddRequest" @noteAdded="updateNotes" class="note-add"></note-add>
-                <component v-else :is="selectedType"></component>
+                <note-add v-if="!isAddingNote" @addRequest="onAddRequest" class="note-add"></note-add>
+                <component v-else :is="selectedType" @noteAdded="addNote"></component>
 
                 <!-- <router-view :notes="notes"></router-view> -->
                 <note-list class="note-list" :notes="notes"></note-list>
@@ -34,6 +34,7 @@ export default {
     },
     created() {
         this.unsubscribe = eventBus.on('deleteNote', this.deleteNote)
+
         this.updateNotes()
     },
     methods: {
@@ -47,8 +48,18 @@ export default {
                 .then(this.updateNotes)
         },
         onAddRequest(cmp) {
-            this.isAddingNote = !this.isAddingNote
+            this.isAddingNote = true
             this.selectedType = cmp
+        },
+        addNote(noteParams){
+            this.isAddingNote = false
+
+            noteService.getEmptyNote(noteParams.type)
+                .then(newNote=>{
+                    newNote.info = noteParams.noteData
+                    noteService.addNote(newNote)
+                        .then(()=>this.updateNotes())
+                })
         }
     },
     computed: {

@@ -46,24 +46,20 @@ function addNote(note) {
 function getEmptyNote(noteType) {
     const newNote = {
         isPinned: false,
+        type: noteType,
         info: {},
         style: {
             backgroundColor: null
         }
     }
-    if (noteType === 'note-txt') {
-        newNote.type = 'note-txt'
-        newNote.info.txt = null
-        newNote.info.title = null
-    } else if (noteType === 'note-img') {
-        newNote.type = 'note-img'
+   
+    if (noteType === 'note-img') {
         newNote.info.url = null
         newNote.info.title = null
     } else if (noteType === 'note-video') {
-        newNote.type = 'note-video'
         newNote.info.url = null
     }
-    return newNote
+    return Promise.resolve(newNote)
 }
 
 // function _getFromYoutube(searchTerm){

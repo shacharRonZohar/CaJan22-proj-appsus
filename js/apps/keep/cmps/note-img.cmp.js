@@ -18,6 +18,6 @@ export default {
    computed: {
    },
    created(){
-      // console.log(this.info)
+      console.log(this.info)
    }
 }
