@@ -13,7 +13,9 @@
     /* width: 40%; */
     width: 600px;
     padding: 1rem;
-    box-shadow: inset 1px 1px 0 rgb(0 0 0 / 10%), inset 0 -1px 0 rgb(0 0 0 / 7%);
+    /* box-shadow: inset 1px 1px 0 rgb(0 0 0 / 10%), inset 0 -1px 0 rgb(0 0 0 / 7%); */
+    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%),
+                0 1px 3px 1px rgb(60 64 67 / 15%);
     border: 1px solid transparent;
     border-radius: 8px;
     margin-right: 5px;

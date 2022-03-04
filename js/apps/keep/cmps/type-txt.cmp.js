@@ -20,14 +20,14 @@ export default {
     data() {
         return {
             noteData: {
-                title: null,
-                txt: null,
+                    title: null,
+                    txt: null,
             }
         }
     },
     methods: {
-        onSubmit(){
-            this.$emit('noteAdded', {type: 'note-txt', noteData:this.noteData})
+        onSubmit() {
+            this.$emit('noteAdded', { type: 'note-txt', noteData: this.noteData })
         }
     },
     computed: {

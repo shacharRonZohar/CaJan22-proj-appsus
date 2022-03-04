@@ -5,7 +5,8 @@ export default {
     props: ['notes'],
     template: `
         <section class="note-list">
-            <div v-for="note in notes" class="note" :class="note.type" :key="note.id">
+            <div v-for="note in notes" class="note" :class="note.type" :key="note.id" 
+            :style="getFormattedStyle(note.style)">
                 <router-link :to="'/keep/'+note.type+'/'+note.id">
                     <note-preview :note="note"></note-preview>
                     <button class="delete-btn icon" @click.stop="deleteNote(note.id)"></button>
@@ -32,6 +33,9 @@ export default {
         getNotePath(note){
             console.log(`${note.type}/${note.id}`)
             return `${note.type}/${note.id}`
+        },
+        getFormattedStyle(style){
+            return style ? style : {backgroundColor: '#fff'}
         }
 
     },

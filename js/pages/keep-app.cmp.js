@@ -11,7 +11,7 @@ export default {
         <section class="keep-app">
                 <note-add v-if="!isAddingNote" @addRequest="onAddRequest" class="note-add"></note-add>
                 <component v-else :is="selectedType" @noteAdded="addNote"></component>
-
+                <input type="color" name="background-color" id="background-color" v-model="selectedColor.backgroundColor">
                 <!-- <router-view :notes="notes"></router-view> -->
                 <note-list class="note-list" :notes="notes"></note-list>
         </section>
@@ -27,7 +27,10 @@ export default {
         return {
             notes: null,
             isAddingNote: false,
-            selectedType: null
+            selectedType: null,
+            selectedColor: {
+                backgroundColor:null
+            }
         }
     },
     created() {
@@ -55,6 +58,8 @@ export default {
             noteService.getEmptyNote(noteParams.type)
                 .then(newNote=>{
                     newNote.info = noteParams.noteData
+                    newNote.style = this.selectedColor
+                    // newNote.style = noteParams.noteData.style
                     noteService.addNote(newNote)
                         .then(()=>this.updateNotes())
                 })

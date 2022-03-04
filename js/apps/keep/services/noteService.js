@@ -51,8 +51,9 @@ function getEmptyNote(noteType) {
         style: {
             backgroundColor: null
         }
+
     }
-   
+
     if (noteType === 'note-img') {
         newNote.info.url = null
         newNote.info.title = null
@@ -74,7 +75,11 @@ function _createNotes() {
             isPinned: true,
             info: {
                 txt: 'Fullstack Me Baby!',
-                title: 'avocado'
+                title: 'avocado',
+                
+            },
+            style: {
+                backgroundColor: 'red'
             }
         },
         {
@@ -86,7 +91,8 @@ function _createNotes() {
             },
             style: {
                 backgroundColor: '#00d'
-            }
+            },
+
         },
         {
             id: 'n103',
@@ -127,11 +133,13 @@ function _createNotes() {
             type: 'note-img',
             info: {
                 url: './assets/imgs/horse.jpg',
-                title: 'Bojack Horseman'
+                title: 'Bojack Horseman',
+                
             },
             style: {
                 backgroundColor: '#00d'
             }
+
         },
         {
             id: 'n108',
