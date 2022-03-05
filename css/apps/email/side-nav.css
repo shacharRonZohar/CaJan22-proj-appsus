@@ -69,6 +69,10 @@
     background-image: url(../../../assets/icons/delete-full.svg);
 }
 
+.email-app .draft .icon {
+    background-image: url(../../../assets/icons/draft.svg);
+}
+
 .email-app .router-link-active {
     background-color: var(--clr3);
     font-family: roboto-b, sans-serif;
