@@ -85,10 +85,16 @@ function handleRemove(emailId) {
         )
 }
 function send(email) {
+    console.log(email)
     email.sentAt = Date.now()
     email.from = loggedInUser
+    if (email.status === 'draft') {
+        console.log(email.status)
+        email.status = 'sent'
+        return put(email)
+    }
+    email.status = 'sent'
     email.isRead = 'read'
-    email = _setStatus(email)
     return post(email)
 }
 function getNewEmail() {

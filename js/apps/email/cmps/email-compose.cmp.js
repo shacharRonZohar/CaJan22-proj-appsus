@@ -2,7 +2,7 @@ import { emailService } from "../services/emailService.js"
 
 export default {
     props: [''],
-    emits: ['close', 'sent'],
+    emits: ['close', 'sent', 'draftSaved'],
     template: `
             <section class="email-compose">
                 <div class="header-container">
@@ -35,15 +35,22 @@ export default {
     },
     data() {
         return {
-            newEmail: null
+            newEmail: null,
+            interval: null
         }
     },
     created() {
-        emailService.getNewEmail()
+        console.log(this.$route.params)
+        if (this.$route.params.status === 'draft') {
+            emailService.get(this.$route.params.emailId)
+                .then(newEmail => this.newEmail = newEmail)
+                .then(newEmail => this.interval = setInterval(this.saveAsDraft, 5000, newEmail))
+        } else emailService.getNewEmail()
             .then(newEmail => this.newEmail = newEmail)
+            .then(newEmail => this.interval = setInterval(this.saveAsDraft, 5000, newEmail))
     },
     unmounted() {
-
+        clearInterval(this.interval)
     },
 
     methods: {
@@ -55,6 +62,20 @@ export default {
         },
         close() {
             this.$emit('close')
+        },
+        saveAsDraft(newEmail) {
+            emailService.get(newEmail.id)
+                .then(email => {
+                    // console.log(email, newEmail)
+                    if (!email) {
+                        newEmail.status = 'draft'
+                        newEmail.isRead = true
+                        return emailService.post(newEmail)
+                    }
+                    return emailService.put(newEmail)
+                })
+                .then(newEmail => this.newEmail = newEmail)
+                .then(() => this.$emit('draftSaved'))
         }
     },
     computed: {

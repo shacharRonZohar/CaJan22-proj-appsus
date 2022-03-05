@@ -61,6 +61,14 @@
     background-image: url(../../../assets/icons/sent.svg);
 }
 
+.email-app .starred .icon {
+    background-image: url(../../../assets/icons/star-black.svg);
+}
+
+.email-app .trash .icon {
+    background-image: url(../../../assets/icons/delete-full.svg);
+}
+
 .email-app .router-link-exact-active {
     background-color: var(--clr3);
     font-family: roboto-b, sans-serif;

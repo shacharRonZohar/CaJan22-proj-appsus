@@ -19,7 +19,7 @@ const routes = [
             component: emailList,
         },
         {
-            path: ':status/compose',
+            path: ':status/:?compose',
             component: emailList
         },
         {
@@ -27,8 +27,12 @@ const routes = [
             component: emailDetails
         },
         {
-            path: ':status/:emailId/compose',
+            path: ':status/:emailId/:?compose',
             component: emailDetails
+        },
+        {
+            path: ':status/compose/:emailId',
+            component: emailList
         }],
     },
 
