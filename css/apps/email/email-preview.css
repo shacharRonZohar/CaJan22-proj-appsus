@@ -1,8 +1,8 @@
 .email-preview {
     display: grid;
-    grid-template-columns: 1fr 1fr 3fr 7fr 2fr;
+    grid-template-columns: 1fr 3fr 7fr 2fr;
     grid-template-rows: 1fr;
-    grid-template-areas: 'select star name txt sent-at';
+    grid-template-areas: 'star name txt sent-at';
     width: 100%;
     height: 40px;
     align-items: center;

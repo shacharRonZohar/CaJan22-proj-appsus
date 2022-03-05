@@ -39,7 +39,7 @@ function query(criteria) {
                 let isMatch = (criteria.status === email.status) &&
                     email.body.toLowerCase().includes(criteria.txt.toLowerCase()) &&
                     !email.removedAt
-                if (criteria.isRead && isMatch) {
+                if (criteria.isRead && isMatch && criteria.isRead !== 'all') {
                     isMatch = (email.isRead === criteria.isRead)
                 }
                 return isMatch
@@ -81,8 +81,7 @@ function handleRemove(emailId) {
             email.isStar = false
             put(email)
             console.log(email)
-        }
-        )
+        })
 }
 function send(email) {
     console.log(email)
@@ -97,6 +96,7 @@ function send(email) {
     email.isRead = 'read'
     return post(email)
 }
+
 function getNewEmail() {
     return Promise.resolve({
         subject: '',

@@ -10,7 +10,7 @@
     position: absolute;
     height: 1px;
     border-bottom: 1px solid var(--clr2);
-    top: 73px;
+    top: 72px;
     left: 0;
 }
 
@@ -46,4 +46,9 @@
 .main-header a:not(.logo):hover {
     background-color: var(--clr4);
 
+}
+
+.main-header .router-link-active {
+    background-color: var(--clr3);
+    font-family: roboto-b, sans-serif;
 }

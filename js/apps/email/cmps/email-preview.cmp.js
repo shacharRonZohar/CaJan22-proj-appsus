@@ -5,13 +5,12 @@ export default {
     emits: ['removed', 'star'],
     template: `
         <section class="email-preview click" :class="isRead">
-            <input @click.stop type="checkbox" class="select-email" />
             <div  @click.stop="onStar" class="star icon click" :class="starState"></div>
             <span class="name-txt">{{email.from.fullName}}</span>
             <div class="txt-container">
                 <span class="subject">{{subjectTxt}}</span>
                 -
-                <span class="body-preview">{{email.body}}</span>
+                <span class="body-preview">{{bodyTxt}}</span>
             </div>
             <span class="sent-at">{{formattedTime}}</span>
             <div class="actions">
@@ -45,6 +44,9 @@ export default {
     computed: {
         subjectTxt() {
             return this.email.subject ? this.email.subject : 'No Subject'
+        },
+        bodyTxt() {
+            return this.email.body ? this.email.body : 'No Body'
         },
         isRead() {
             return { 'read': this.email.isRead === 'read' }
