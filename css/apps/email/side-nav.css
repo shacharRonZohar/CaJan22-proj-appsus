@@ -69,12 +69,12 @@
     background-image: url(../../../assets/icons/delete-full.svg);
 }
 
-.email-app .router-link-exact-active {
+.email-app .router-link-active {
     background-color: var(--clr3);
     font-family: roboto-b, sans-serif;
 }
 
-.email-app .inbox.router-link-exact-active {
+.email-app .inbox.router-link-active {
     background-color: var(--clr6);
     color: var(--clr7);
 }
