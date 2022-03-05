@@ -16,17 +16,6 @@ export default {
     components: {
         emailPreview
     },
-    data() {
-        return {
-
-        }
-    },
-    created() {
-
-    },
-    unmounted() {
-
-    },
     methods: {
         onRead(id) {
             this.$emit('read', id)
@@ -40,7 +29,5 @@ export default {
         onToggleRead(id){
             this.$emit('toggleRead',id)
         }
-    },
-    computed: {
     },
 }

@@ -80,15 +80,12 @@ function handleRemove(emailId) {
             email.removedAt = Date.now()
             email.isStar = false
             put(email)
-            console.log(email)
         })
 }
 function send(email) {
-    console.log(email)
     email.sentAt = Date.now()
     email.from = loggedInUser
     if (email.status === 'draft') {
-        console.log(email.status)
         email.status = 'sent'
         return put(email)
     }
@@ -115,8 +112,6 @@ function getNumOfUnread() {
 }
 function toggleRead(email) {
     email.isRead = email.isRead === 'read' ? 'unread' : 'read'
-    console.log(email.isRead)
-    // email.isRead = !email.isRead
     return put(email)
 }
 
@@ -124,7 +119,6 @@ function toggleStar(id) {
     return get(id)
         .then(email => {
             email.isStar = !email.isStar
-            console.log(email)
             return put(email)
         }
         )
@@ -133,8 +127,6 @@ function toggleStar(id) {
 function _setStatus(email) {
     let status
     if (email.to.email === loggedInUser.email) status = 'inbox'
-    // else if (email.isDeleted) status = 'trash'
-    // else if (!email.isComplete) status = 'draft'
     else status = 'sent'
     email.status = status
     return email
@@ -144,7 +136,6 @@ function _createEmails() {
     // Temporary!
     let emails = utilService.load(EMAIL_KEY) || []
     if (!emails || !emails.length) {
-        // let email1 = getEmptyEmail(), email2 = getEmptyEmail()
         emails.push(..._getDemoEmails(true))
         emails.push(..._getDemoEmails(false))
     }
@@ -165,7 +156,6 @@ function _getDemoEmails(isRecieved) {
             isStar: false,
             removedAt: null
         }
-        console.log(email)
         email = _setStatus(email)
         emails.push(email)
     }
