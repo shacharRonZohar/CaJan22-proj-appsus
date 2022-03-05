@@ -26,6 +26,14 @@ export default {
                     <div class="icon"></div>
                     <div class="starred">Starred</div>
                 </router-link>
+                <router-link class="trash" :to="getPath('trash')">
+                    <div class="icon"></div>
+                    <div class="trash">Trash</div>
+                </router-link>
+                <router-link class="draft" :to="getPath('draft')">
+                    <div class="icon"></div>
+                    <div class="draft">draft</div>
+                </router-link>
             </nav>
             <section class="email-search-container">
                 <form @submit.prevent="loadEmails" class="email-search-form">
@@ -56,7 +64,7 @@ export default {
             </section>
             <div class="list-header"></div>
             <router-view @removed="onRemoved" @star="onStar" @read="onRead" class="email-content" :emails="emails" />
-            <email-compose @sent="onSent" @close="closeCompose" v-if="isCompose"></email-compose>
+            <email-compose @sent="onSent" @close="closeCompose"  @draftSaved="loadEmails" v-if="isCompose"></email-compose>
         </section>
     `,
     components: {
@@ -94,7 +102,10 @@ export default {
         },
         '$route.fullPath': {
             handler() {
-                this.isCompose = this.$route.fullPath.includes('compose') ? true : false
+                this.isCompose = this.$route.fullPath.includes('compose')
+                if (this.$route.fullPath.includes('draft')) {
+                    this.$route.params.compose = 'draft'
+                } else this.$route.params.compose = 'new'
             },
             immediate: true,
         },
@@ -119,11 +130,16 @@ export default {
         onRead(id) {
             emailService.get(id)
                 .then(email => {
-                    if (email.isRead === 'read') return
+                    if (email.isRead === 'read') return email
                     return emailService.toggleRead(email)
                         .then(() => this.loadEmails())
+                        .then(() => email)
                 })
-                .then(() => this.$router.push(this.getIdPath(id)))
+                .then((email) => {
+                    if (email.status === 'draft') {
+                        this.$router.push(`/email/draft/compose/${email.id}`)
+                    } else this.$router.push(this.getIdPath(id))
+                })
         },
         getIdPath(id) {
             let path = this.$route.fullPath
@@ -136,15 +152,15 @@ export default {
             return `/email/${mainPath}${composePath}`
         },
         closeCompose() {
-            this.$router.push(this.$route.fullPath.replace('/compose', ''))
+            this.$router.push(this.$route.fullPath.substring(0, this.$route.fullPath.indexOf('/compose')))
         },
         onSent() {
             this.loadEmails()
             this.closeCompose()
         },
         onRemoved(id) {
-            console.log(id, 'App')
-            emailService.remove(id)
+            // console.log(id, 'App')
+            emailService.handleRemove(id)
                 .then(() => this.loadEmails())
         },
         onSetSort(sortBy) {
