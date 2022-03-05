@@ -1,0 +1,14 @@
+.notes-filter {
+    background-color: var(--clr1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 2;
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+.notes-filter .filter {
+    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%),
+    0 1px 3px 1px rgb(60 64 67 / 15%);
+}
