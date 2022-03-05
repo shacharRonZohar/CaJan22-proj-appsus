@@ -37,4 +37,5 @@
     padding: 0 16px;
     background-color: #1a73e8;
     color: #fff;
+    align-self: flex-end;
 }
