@@ -1,6 +1,5 @@
 
 export default {
-    props: [],
     emits: ['addRequest', 'filterRequest'],
     template: `
     <section class="note-add">

@@ -5,10 +5,7 @@ import noteVideo from './note-video.cmp.js'
 export default {
     props: ['note'],
     template: `
-        <article >
-            <component :is="note.type" :info="note.info" ></component>
-        </article>
-
+        <component :is="note.type" :info="note.info" ></component>
    `,
     components: {
         noteTxt,

@@ -12,7 +12,7 @@ export default {
                 <router-link :to="'/keep/'+note.type+'/'+note.id">
                     <note-preview :note="note"></note-preview>
                     <button class="delete-btn icon" @click.stop="deleteNote(note.id)"></button>
-                    <button class="pin-btn icon" @click.stop="pinNote(note.id)"></button>
+                    <button class="pin-btn icon" @click.stop="pinNote(note)"></button>
                     <button class="duplicate-btn icon" @click.stop="duplicateNote(note)"></button>
                 </router-link>
             </div>
@@ -23,7 +23,7 @@ export default {
     },
     data() {
         return {
-            noteToEdit: null
+            noteToEdit: null,
         }
     },
     methods: {
@@ -34,8 +34,8 @@ export default {
         deleteNote(noteId) {
             eventBus.emit('deleteNote', noteId)
         },
-        pinNote(noteId) {
-            noteService.pinNote(noteId)
+        pinNote(note) {
+            noteService.pinNote(note.id)
                 .then(() => this.$emit('notePinned'))
         },
         duplicateNote(note){
@@ -49,8 +49,6 @@ export default {
         getFormattedStyle(style) {
             return style ? style : { backgroundColor: '#fff' }
         }
+    },
 
-    },
-    computed: {
-    },
 }

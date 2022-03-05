@@ -1,0 +1,17 @@
+.note-txt .title {
+    font-family: roboto-b;
+    color: var(--clr13);
+    display: block;
+    margin-bottom: 20px;
+}
+
+.note-img .title {
+    font-family: roboto-b;
+    color: var(--clr13);
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.note-video iframe {
+    margin-bottom: 20px;
+}
