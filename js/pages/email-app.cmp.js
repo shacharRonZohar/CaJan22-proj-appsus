@@ -26,6 +26,10 @@ export default {
                     <div class="icon"></div>
                     <div class="starred">Starred</div>
                 </router-link>
+                <router-link class="starred" :to="getPath('trash')">
+                    <div class="icon"></div>
+                    <div class="trash">Trash</div>
+                </router-link>
             </nav>
             <section class="email-search-container">
                 <form @submit.prevent="loadEmails" class="email-search-form">
@@ -144,7 +148,7 @@ export default {
         },
         onRemoved(id) {
             console.log(id, 'App')
-            emailService.remove(id)
+            emailService.handleRemove(id)
                 .then(() => this.loadEmails())
         },
         onSetSort(sortBy) {

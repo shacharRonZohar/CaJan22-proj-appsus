@@ -12,6 +12,7 @@ export const emailService = {
     toggleStar,
     toggleRead,
     getNewEmail,
+    handleRemove: handleRemove,
     getNumOfUnread,
 }
 const EMAIL_KEY = 'mailDB'
@@ -29,14 +30,15 @@ const otherUser = {
 _createEmails()
 
 function query(criteria) {
-    // console.log(criteria.isRead)
     return storageService.query(EMAIL_KEY)
         .then(emails => {
             // Filter
             return emails.filter(email => {
+                if (criteria.status === 'trash') return email.removedAt
                 if (criteria.status === 'starred') return email.isStar
                 let isMatch = (criteria.status === email.status) &&
-                    email.body.toLowerCase().includes(criteria.txt.toLowerCase())
+                    email.body.toLowerCase().includes(criteria.txt.toLowerCase()) &&
+                    !email.removedAt
                 if (criteria.isRead && isMatch) {
                     isMatch = (email.isRead === criteria.isRead)
                 }
@@ -71,6 +73,17 @@ function remove(mailId) {
     return storageService.remove(EMAIL_KEY, mailId)
 }
 
+function handleRemove(emailId) {
+    return get(emailId)
+        .then(email => {
+            if (email.removedAt) return remove(email.id)
+            email.removedAt = Date.now()
+            email.isStar = false
+            put(email)
+            console.log(email)
+        }
+        )
+}
 function send(email) {
     email.sentAt = Date.now()
     email.from = loggedInUser
@@ -85,7 +98,8 @@ function getNewEmail() {
         sentAt: null,
         to: {},
         from: {},
-        isStar: false
+        isStar: false,
+        removedAt: null,
     })
 }
 
@@ -142,7 +156,8 @@ function _getDemoEmails(isRecieved) {
             sentAt: Math.random() > 0.5 ? Date.now() : 1646229756255,
             to: isRecieved ? loggedInUser : otherUser,
             from: isRecieved ? otherUser : loggedInUser,
-            isStar: false
+            isStar: false,
+            removedAt: null
         }
         console.log(email)
         email = _setStatus(email)
