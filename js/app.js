@@ -8,9 +8,6 @@ Vue.createApp({
             <router-view class="main-content main-layout"/>
         </section>
     `,
-    created() {
-        console.log('hi')
-    },
     components: {
         appHeader,
     }

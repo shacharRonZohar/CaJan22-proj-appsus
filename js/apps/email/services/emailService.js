@@ -80,7 +80,6 @@ function handleRemove(emailId) {
             email.removedAt = Date.now()
             email.isStar = false
             put(email)
-            console.log(email)
         })
 }
 function send(email) {
@@ -157,7 +156,6 @@ function _getDemoEmails(isRecieved) {
             isStar: false,
             removedAt: null
         }
-        console.log(email)
         email = _setStatus(email)
         emails.push(email)
     }

@@ -60,7 +60,6 @@ export default {
         saveAsDraft(newEmail) {
             emailService.get(newEmail.id)
                 .then(email => {
-                    // console.log(email, newEmail)
                     if (!email) {
                         newEmail.status = 'draft'
                         newEmail.isRead = true
