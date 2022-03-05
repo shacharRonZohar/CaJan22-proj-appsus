@@ -6,7 +6,10 @@ export default {
     emits: [''],
     template: `
         <section class="email-app">
-            <nav class="side-nav">
+            <button @click="toggleSideNav" class="btn hamburger"></button>
+            <div v-if="isSideNav" @click="toggleSideNav" class="background click"></div>
+            <nav class="side-nav" :class="isOpen">
+                <div @click="toggleSideNav" class="click icon close-nav"></div>
                 <router-link class="btn compose" :to="composePath">
                     <div class="icon"></div>
                     Compose
@@ -61,9 +64,8 @@ export default {
                         <div @click.stop="onSetSort('sentAt')" :class="activeDate" class="click">Date</div>
                     </div>
                 </div>
-                <div v-if="isFilter" class="filter-background" @click="toggleFilter"></div>
+                <div v-if="isFilter" class="background" @click="toggleFilter"></div>
             </section>
-            <div class="list-header"></div>
             <router-view @removed="onRemoved" @star="onStar" @read="onRead" @toggleRead="onToggleRead" class="email-content" :emails="emails" />
             <email-compose @sent="onSent" @close="closeCompose"  @draftSaved="loadEmails" v-if="isCompose"></email-compose>
         </section>
@@ -89,7 +91,8 @@ export default {
             numOfUnread: 0,
             isCompose: null,
             isFilter: false,
-            searchTerm: null
+            searchTerm: null,
+            isSideNav: null
         }
     },
     created() {
@@ -186,6 +189,9 @@ export default {
             emailService.get(id)
             .then(emailService.toggleRead)
             .then(this.loadEmails)
+        },
+        toggleSideNav(){
+            this.isSideNav = !this.isSideNav
         }
     },
     computed: {
@@ -201,6 +207,9 @@ export default {
         },
         activeDate() {
             return { active: this.criteria.sort.by === 'sentAt' }
+        },
+        isOpen(){
+            return {'open': this.isSideNav}
         }
 
     },

@@ -3,8 +3,14 @@
     display: flex;
     width: 100%;
     flex-direction: column;
-    grid-area: 5 / 7 / span 31 / span 25;
+    grid-area: 5 / 1 / span 31 / span 31;
     display: flex;
     overflow-y: auto;
     overflow-x: hidden;
+}
+
+@media (min-width:780px) {
+    .email-content {
+        grid-area: 5 / 7 / span 31 / span 25;
+    }
 }

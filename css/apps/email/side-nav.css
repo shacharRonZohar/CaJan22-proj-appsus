@@ -1,10 +1,23 @@
 .email-app .side-nav {
     grid-area: 1 / 1 / span 31 / span 6;
     /* background-color: purple; */
+    position: fixed;
+    transform: translateX(-150%);
     display: flex;
     flex-direction: column;
     /* gap: 10px; */
     align-items: center;
+    z-index: 5;
+    min-height: 100vh;
+    min-width: 50vw;
+    background-color: var(--clr1);
+}
+
+.email-app .side-nav.open {
+    transform: translateX(0);
+    min-height: 100vh;
+    top: 0;
+    left: 0;
 }
 
 .email-app .side-nav>*:not(.compose) {
@@ -81,4 +94,23 @@
 .email-app .inbox.router-link-active {
     background-color: var(--clr6);
     color: var(--clr7);
+}
+
+.email-app .side-nav .close-nav {
+    position: absolute;
+    left: 0;
+    max-width: 48px;
+    background-image: url(../../../assets/icons/close.svg);
+}
+
+@media (min-width:770px) {
+    .email-app .side-nav .close-nav {
+        display: none;
+    }
+
+    .email-app .side-nav {
+        min-width: 0;
+        transform: translateX(0);
+        position: initial;
+    }
 }

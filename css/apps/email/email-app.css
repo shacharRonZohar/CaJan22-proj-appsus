@@ -84,11 +84,28 @@
 
 }
 
-.email-app .email-search-container .filter-background {
+.email-app .background {
     position: fixed;
     z-index: 3;
     height: 100vh;
     width: 100vw;
     top: 0;
     left: 0;
+    background-color: var(--clr2b);
+}
+
+.email-app .hamburger {
+    grid-area: 1/1 / span 2 /span 1;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url(../../../assets/icons/hamburger.svg);
+    min-width: 28px;
+}
+
+.email-app .hamburger .background {}
+
+@media (min-width:770px) {
+    .email-app .hamburger {
+        display: none;
+    }
 }
