@@ -4,7 +4,7 @@
 }
 
 .email-app .email-search-container {
-    grid-area: 1 / 7 / span 3 /span 15;
+    grid-area: 1 / 7 / span 3 /span 25;
     background-color: var(--clr10);
     border-radius: 15px;
     font-size: 1.0625rem;
@@ -92,6 +92,12 @@
     background-size: cover;
     background-image: url(../../../assets/icons/hamburger.svg);
     min-width: 28px;
+}
+
+@media (min-width:560px) {
+    .email-app .email-search-container {
+        grid-area: 1 / 7 / span 3 /span 15;
+    }
 }
 
 @media (min-width:770px) {
