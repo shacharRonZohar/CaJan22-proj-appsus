@@ -5,6 +5,7 @@ export default {
     props: ['emails'],
     template: `
         <section v-if="email" class="email-details">
+            <div @click="$router.go(-1)" class="back icon click"></div>
             <header class="email-header">
                 <span class="subject">{{subjectTxt}}</span>
                 <div class="from">

@@ -34,3 +34,12 @@
 .email-details .sent-at {
     align-self: flex-end;
 }
+
+.email-details .back {
+    background-image: url(./../../../assets/icons/back.svg);
+    align-self: flex-end;
+}
+
+.email-details .back:hover {
+    background-color: var(--clr4);
+}
