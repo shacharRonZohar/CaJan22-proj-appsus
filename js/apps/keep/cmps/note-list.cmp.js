@@ -44,7 +44,6 @@ export default {
 
         },
         getNotePath(note) {
-            console.log(`${note.type}/${note.id}`)
             return `${note.type}/${note.id}`
         },
         getFormattedStyle(style) {

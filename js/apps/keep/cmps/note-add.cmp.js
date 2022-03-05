@@ -13,7 +13,6 @@ export default {
                     <button class="vid-btn btn icon" @click.prevent="setNoteType('note-video')" title="Video Note"></button>
                 </div>
             </form>
-            <!-- <pre>{{newNote}}</pre> -->
         </div>
     </section>
    `,
@@ -27,7 +26,6 @@ export default {
             this.$emit('addRequest', type)
         },
         setNotesFilter(cmp) {
-            console.log(cmp);
             this.$emit('filterRequest', cmp)
         }
     },

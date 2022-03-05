@@ -7,7 +7,6 @@ export default {
     template: `
         <article >
             <component :is="note.type" :info="note.info" ></component>
-            <!-- <note-txt :note="note"></note-txt> -->
         </article>
 
    `,

@@ -18,8 +18,6 @@ function query({search, type}) {
     return storageService.query(NOTES_KEY)
         .then(notes => {
             const newNotes = notes.filter(note => {
-                console.log(note)
-                console.log(type)
                 const regex = new RegExp(search, 'i')
                 return (regex.test(note.info.title) || 
                         regex.test(note.info.txt))

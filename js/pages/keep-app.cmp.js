@@ -11,10 +11,8 @@ export default {
     template: `
         <section class="keep-app">
                 <note-add v-if="!isAddingNote" @addRequest="onAddRequest" @filterRequest="onFilterRequest" class="note-add"></note-add>
-                <!-- <notes-filter></notes-filter> -->
                 <component v-else :is="selectedType" @noteAdded="addNote" @filtered="setFilter"></component>
                 <input type="color" name="background-color" id="background-color" v-model="selectedColor.backgroundColor">
-                <!-- <router-view :notes="notes"></router-view> -->
                 <note-list class="note-list" @notePinned="updateNotes" @noteDuplicate="updateNotes" :notes="notes"></note-list>
         </section>
     `,
@@ -73,10 +71,7 @@ export default {
                 })
         },
         setFilter(filterBy) {
-            console.log(filterBy);
             this.filterBy = filterBy
-            console.log(this.filterBy);
-
             this.updateNotes()
         }
     },
