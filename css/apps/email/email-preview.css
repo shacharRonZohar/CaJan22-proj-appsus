@@ -40,6 +40,10 @@
     grid-area: star;
 }
 
+.email-preview .star.icon.active {
+    background-image: url(../../../assets/icons/star-active.svg);
+}
+
 .email-preview .name-txt {
     grid-area: name;
 }

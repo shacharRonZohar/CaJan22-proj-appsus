@@ -22,6 +22,10 @@ export default {
                     <div class="icon"></div>
                     <div class="sent">Sent</div>
                 </router-link>
+                <router-link class="starred" :to="getPath('starred')">
+                    <div class="icon"></div>
+                    <div class="starred">Starred</div>
+                </router-link>
             </nav>
             <section class="email-search-container">
                 <form @submit.prevent="loadEmails" class="email-search-form">
@@ -51,7 +55,7 @@ export default {
                 <div v-if="isFilter" class="filter-background" @click="toggleFilter"></div>
             </section>
             <div class="list-header"></div>
-            <router-view @removed="onRemoved" @read="onRead" class="email-content" :emails="emails" />
+            <router-view @removed="onRemoved" @star="onStar" @read="onRead" class="email-content" :emails="emails" />
             <email-compose @sent="onSent" @close="closeCompose" v-if="isCompose"></email-compose>
         </section>
     `,
@@ -150,16 +154,16 @@ export default {
         },
         toggleFilter() {
             this.isFilter = !this.isFilter
+        },
+        onStar(emailId) {
+            emailService.toggleStar(emailId)
+                .then(() => this.loadEmails())
         }
     },
     computed: {
         composePath() {
             if (this.$route.fullPath.includes('compose')) return this.$route.fullPath
             return this.$route.fullPath + '/compose'
-        },
-
-        getCriteria() {
-
         },
         formattedNumOfUnread() {
             return this.numOfUnread ? this.numOfUnread : ''
