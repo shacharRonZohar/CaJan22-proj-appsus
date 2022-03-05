@@ -3,13 +3,15 @@ export default {
     template: `
         <section class="note-write">
             <div class="write">
-                <button>Pin</button>
-                <form @submit.prevent="onSubmit">
-                    <input v-model="noteData.url" type="text" placeholder="Youtube url..."> <br>
-                    <button>Add</button>
+                <button class="pin-btn btn icon"></button>
+                <button @click="onSubmit" class="add-btn btn icon"></button> 
+                <form>
+                    <input v-model="noteData.info.url" class="yt-url-input" type="text" placeholder="Youtube url..."> <br>
                 </form>
-                <button>color</button>
-                <button class="btn">Close</button>
+                <div class="color-picker icon">
+                    <input type="color" v-model="noteData.style.backgroundColor">
+                </div>
+                <button class="close-btn btn">Close</button>
             </div>
 
         </section>
@@ -17,7 +19,13 @@ export default {
     data() {
         return {
             noteData: {
-                url: null
+                info: {
+                    url: null
+                },
+                style: {
+                    backgroundColor: '#FFFFFF'
+                }
+
             }
         }
     },

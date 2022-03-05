@@ -1,7 +1,8 @@
 .note-list {
     background-color: var(--clr1);
-    column-count: 3;
+    column-count: 4;
     column-width: 238px;
+    margin: 0 30px;
 }
 
 .note-list .note {
@@ -39,5 +40,15 @@
     background-image: url(../../../assets/icons/duplicate.svg);
     border: none;
     margin-top: 15px;
+}
 
+iframe {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.note-list .note-video {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

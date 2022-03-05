@@ -6,13 +6,13 @@ export default {
             <div class="filter">
                 <form @submit.prevent="setFilter">
                     <input v-model="filterBy.search" type="text" placeholder="Search..."> <br>
-                    <select v-model="filterBy.type">
+                    <!-- <select v-model="filterBy.type">
                         <option value="note-txt">Text</option>
                         <option value="note-img">Images</option>
                         <option value="note-video">Videos</option>
-                    </select>
-                    <button>search</button>
+                    </select> -->
                 </form>
+                <button class="search-btn btn icon"></button>
             </div>
 
         </section>

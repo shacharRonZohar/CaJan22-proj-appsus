@@ -11,8 +11,9 @@ export default {
     template: `
         <section class="keep-app">
                 <note-add v-if="!isAddingNote" @addRequest="onAddRequest" @filterRequest="onFilterRequest" class="note-add"></note-add>
+                <!-- Adding a note and a filter components -->
                 <component v-else :is="selectedType" @noteAdded="addNote" @filtered="setFilter"></component>
-                <input type="color" name="background-color" id="background-color" v-model="selectedColor.backgroundColor">
+                <!-- <input type="color" name="background-color" id="background-color" v-model="selectedColor.backgroundColor"> -->
                 <note-list class="note-list" @notePinned="updateNotes" @noteDuplicate="updateNotes" :notes="notes"></note-list>
         </section>
     `,
@@ -30,7 +31,7 @@ export default {
             isAddingNote: false,
             selectedType: null,
             selectedColor: {
-                backgroundColor: '#FFFFFF'
+                backgroundColor: ''
             },
             filterBy: {
                 search: '',
@@ -55,19 +56,20 @@ export default {
             this.isAddingNote = true
             this.selectedType = cmp
         },
-        onFilterRequest(cmp){
+        onFilterRequest(cmp) {
             this.isAddingNote = true
             this.selectedType = cmp
         },
-        addNote(noteParams){
+        addNote(noteParams) {
+            // console.log(noteParams);
             this.isAddingNote = false
 
             noteService.getEmptyNote(noteParams.type)
-                .then(newNote=>{
-                    newNote.info = noteParams.noteData
-                    newNote.style = this.selectedColor
+                .then(newNote => {
+                    newNote.info = noteParams.noteData.info
+                    newNote.style = noteParams.noteData.style
                     noteService.addNote(newNote)
-                        .then(()=>this.updateNotes())
+                        .then(() => this.updateNotes())
                 })
         },
         setFilter(filterBy) {

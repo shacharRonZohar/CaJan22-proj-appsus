@@ -3,11 +3,17 @@ export default {
     template: `
         <section class="note-write">
             <div class="write">
-                <form @submit.prevent="onSubmit">
-                    <input v-model="noteData.title" type="text" placeholder="Title"> <br>
-                    <textarea v-model="noteData.txt" name="" id="" cols="30" rows="7" placeholder="Take a note..."></textarea>
-                    <button>Add</button> 
+                
+                <button class="pin-btn btn icon"></button>
+                <button @click="onSubmit" class="add-btn btn icon"></button> 
+                <form>
+                    <input class="txt-input" v-model="noteData.info.title" type="text" placeholder="Title"> <br>
+                    <textarea v-model="noteData.info.txt" cols="30" rows="5" placeholder="Take a note..."></textarea>
                 </form>
+                <div class="color-picker icon">
+                    <input type="color" v-model="noteData.style.backgroundColor">
+                </div>
+                <button class="close-btn btn">Close</button>
             </div>
 
         </section>
@@ -15,8 +21,13 @@ export default {
     data() {
         return {
             noteData: {
+                info: {
                     title: null,
                     txt: null,
+                },
+                style: {
+                    backgroundColor: '#FFFFFF'
+                }
             }
         }
     },

@@ -65,7 +65,7 @@ function getEmptyNote(noteType) {
         type: noteType,
         info: {},
         style: {
-            backgroundColor: null
+            backgroundColor: ''
         }
     }
 
@@ -107,65 +107,65 @@ function _createNotes() {
             },
 
         },
-        // {
-        //     id: 'n103',
-        //     type: 'note-todos',
-        //     isPinned: false,
-        //     info: {
-        //         label: 'Get my stuff together',
-        //         todos: [
-        //             { txt: 'Driving liscence', doneAt: null },
-        //             { txt: 'Coding power', doneAt: 187111111 }
-        //         ]
-        //     }
-        // },
-        // {
-        //     id: 'n104',
-        //     type: 'note-video',
-        //     isPinned: false,
-        //     info: {
-        //         url: 'https://www.youtube.com/watch?v=oLDqCbv0FBQ'
-        //     }
-        // },
-        // {
-        //     id: 'n105',
-        //     type: 'note-video',
-        //     isPinned: false,
-        //     info: {
-        //         url: 'https://www.youtube.com/watch?v=C926N9zMJkU'
-        //     }
-        // },
-        // {
-        //     id: 'n106',
-        //     type: 'note-txt',
-        //     isPinned: true,
-        //     info: {
-        //         txt: 'Fullstack Me Baby!',
-        //         title: 'Okay'
-        //     }
-        // },
-        // {
-        //     id: 'n107',
-        //     type: 'note-img',
-        //     isPinned: false,
-        //     info: {
-        //         url: './assets/imgs/horse.jpg',
-        //         title: 'Bojack Horseman',
+        {
+            id: 'n103',
+            type: 'note-todos',
+            isPinned: false,
+            info: {
+                label: 'Get my stuff together',
+                todos: [
+                    { txt: 'Driving liscence', doneAt: null },
+                    { txt: 'Coding power', doneAt: 187111111 }
+                ]
+            }
+        },
+        {
+            id: 'n104',
+            type: 'note-video',
+            isPinned: false,
+            info: {
+                url: 'https://www.youtube.com/watch?v=oLDqCbv0FBQ'
+            }
+        },
+        {
+            id: 'n105',
+            type: 'note-video',
+            isPinned: false,
+            info: {
+                url: 'https://www.youtube.com/watch?v=C926N9zMJkU'
+            }
+        },
+        {
+            id: 'n106',
+            type: 'note-txt',
+            isPinned: true,
+            info: {
+                txt: 'Fullstack Me Baby!',
+                title: 'Okay'
+            }
+        },
+        {
+            id: 'n107',
+            type: 'note-img',
+            isPinned: false,
+            info: {
+                url: './assets/imgs/horse.jpg',
+                title: 'Bojack Horseman',
 
-        //     },
-        //     style: {
-        //         backgroundColor: 'lightgreen'
-        //     }
+            },
+            style: {
+                backgroundColor: 'lightgreen'
+            }
 
-        // },
-        // {
-        //     id: 'n108',
-        //     type: 'note-video',
-        //     isPinned: false,
-        //     info: {
-        //         url: 'https://www.youtube.com/watch?v=uNT_AxXrUGs'
-        //     }
-        // },
+        },
+        {
+            id: 'n108',
+            type: 'note-video',
+            isPinned: false,
+            info: {
+                url: 'https://www.youtube.com/watch?v=uNT_AxXrUGs'
+            }
+        },
         ]
         utilService.save(NOTES_KEY, notes)
     }
