@@ -14,8 +14,18 @@ export const noteService = {
     duplicateNote
 }
 
-function query() {
+function query({search, type}) {
     return storageService.query(NOTES_KEY)
+        .then(notes => {
+            const newNotes = notes.filter(note => {
+                console.log(note)
+                console.log(type)
+                const regex = new RegExp(search, 'i')
+                return (regex.test(note.info.title) || 
+                        regex.test(note.info.txt))
+            })
+            return newNotes
+        })
         .then(notes => notes.autoSortObj('isPinned', 1, false))
 }
 
@@ -37,10 +47,6 @@ function duplicateNote(note) {
             clone.isPinned = false
             storageService.post(NOTES_KEY, clone)
         })
-    // const clone = JSON.parse(JSON.stringify(note))
-    // clone.isPinned = false
-    // storageService.post(NOTES_KEY, clone)
-    // return clone
 }
 
 function pinNote(noteId) {
@@ -63,7 +69,6 @@ function getEmptyNote(noteType) {
         style: {
             backgroundColor: null
         }
-
     }
 
     if (noteType === 'note-img') {

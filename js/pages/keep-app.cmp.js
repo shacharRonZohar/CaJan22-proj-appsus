@@ -32,23 +32,24 @@ export default {
             isAddingNote: false,
             selectedType: null,
             selectedColor: {
-                backgroundColor: 'white'
+                backgroundColor: '#FFFFFF'
             },
-            filterBy: {}
+            filterBy: {
+                search: '',
+                type: ''
+            }
         }
     },
     created() {
         this.unsubscribe = eventBus.on('deleteNote', this.deleteNote)
-
         this.updateNotes()
     },
     methods: {
         updateNotes() {
-            noteService.query()
+            noteService.query(this.filterBy)
                 .then(notes => this.notes = notes)
         },
         deleteNote(id) {
-            console.log(id)
             noteService.remove(id)
                 .then(this.updateNotes)
         },
@@ -72,15 +73,14 @@ export default {
                 })
         },
         setFilter(filterBy) {
-            this.filterBy = filterBy;
+            console.log(filterBy);
+            this.filterBy = filterBy
             console.log(this.filterBy);
+
+            this.updateNotes()
         }
     },
-    computed: {
-        // isShow() {
-        //     return !this.isAddingNote || !this.isFiltering
-        // }
-    },
+    computed: {},
     unmounted() {
         this.unsubscribe()
     }

@@ -5,7 +5,7 @@ export default {
     template: `
     <section class="note-add">
         <div class="take-note">
-            <form>
+            <form >
                 <div>
                     <button class="filter-btn btn" @click.prevent="setNotesFilter('notes-filter')" title="Filter Notes">filter</button>
                     <input @click.prevent="setNoteType('note-txt')" type="text" placeholder="Take a note...">
@@ -18,13 +18,9 @@ export default {
     </section>
    `,
     data() {
-        return {
-
-        }
+        return {}
     },
-    created() {
-
-    },
+    created() {},
     methods: {
         setNoteType(type){
             type = type.replace(/note/g, 'type')
