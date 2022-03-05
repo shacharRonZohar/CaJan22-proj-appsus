@@ -41,7 +41,7 @@ export default {
     },
     created() {
         console.log(this.$route.params)
-        if (this.$route.params.status === 'draft') {
+        if (this.$route.params.emailId) {
             emailService.get(this.$route.params.emailId)
                 .then(newEmail => this.newEmail = newEmail)
                 .then(newEmail => this.interval = setInterval(this.saveAsDraft, 5000, newEmail))
@@ -72,9 +72,13 @@ export default {
                         newEmail.isRead = true
                         return emailService.post(newEmail)
                     }
+                    email.sentAt = Date.now()
                     return emailService.put(newEmail)
                 })
-                .then(newEmail => this.newEmail = newEmail)
+                .then(newEmail => {
+                    newEmail.sentAt = Date.now()
+                    return this.newEmail = newEmail
+                })
                 .then(() => this.$emit('draftSaved'))
         }
     },

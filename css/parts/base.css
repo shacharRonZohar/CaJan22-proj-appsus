@@ -48,6 +48,9 @@ input, textarea, select {
 	outline: 0;
 	font-family: inherit;
 	resize: none;
+	font-size: inherit;
+	color: inherit;
+	background-color: inherit;
 }
 
 pre {

@@ -36,11 +36,11 @@ export default {
                 </router-link>
             </nav>
             <section class="email-search-container">
-                <form @submit.prevent="loadEmails" class="email-search-form">
+                <form @submit.prevent="onSetSearch" class="email-search-form">
                     <button class="btn icon search"></button>
                     <input
-                        v-model="criteria.txt"
-                        type="text" 
+                        v-model="searchTerm"
+                        type="search" 
                         name="email-search" 
                         id="email-search" 
                         class="email-search"
@@ -51,13 +51,14 @@ export default {
                 @click="toggleFilter"></div>
                 <div v-else class="filter-container">
                     <select @change="loadEmails()" v-model="criteria.isRead" name="is-read" id="is-read">
-                        <option selected >All</option>
+                        <option disabled value="">Select a filter Type:</option>
+                        <option value="all">All</option>
                         <option value="read">Read</option>
                         <option value="unread">Unread</option>
                     </select>
                     <div class="set-sort-container">
-                        <div @click.stop="onSetSort('title')">Title</div>
-                        <div @click.stop="onSetSort('sentAt')">Date</div>
+                        <div @click.stop="onSetSort('title')" :class="activeTitle" class="click">Title</div>
+                        <div @click.stop="onSetSort('sentAt')" :class="activeDate" class="click">Date</div>
                     </div>
                 </div>
                 <div v-if="isFilter" class="filter-background" @click="toggleFilter"></div>
@@ -82,11 +83,13 @@ export default {
                 sort: {
                     by: 'title',
                     isAsc: false
-                }
+                },
+                isRead: 'all'
             },
             numOfUnread: 0,
             isCompose: null,
-            isFilter: false
+            isFilter: false,
+            searchTerm: null
         }
     },
     created() {
@@ -168,6 +171,10 @@ export default {
             this.criteria.sort.by = sortBy
             this.loadEmails()
         },
+        onSetSearch() {
+            this.criteria.txt = this.searchTerm
+            this.loadEmails()
+        },
         toggleFilter() {
             this.isFilter = !this.isFilter
         },
@@ -184,6 +191,12 @@ export default {
         formattedNumOfUnread() {
             return this.numOfUnread ? this.numOfUnread : ''
         },
+        activeTitle() {
+            return { active: this.criteria.sort.by === 'title' }
+        },
+        activeDate() {
+            return { active: this.criteria.sort.by === 'sentAt' }
+        }
 
     },
 }
