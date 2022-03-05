@@ -95,6 +95,7 @@
 .email-app .side-nav .close-nav {
     position: absolute;
     left: 0;
+    top: 0;
     max-width: 48px;
     background-image: url(../../../assets/icons/close.svg);
 }
@@ -108,5 +109,12 @@
         min-width: 0;
         transform: translateX(0);
         position: initial;
+    }
+
+    .email-app .side-nav.open {
+        transform: unset;
+        top: unset;
+        left: unset;
+        padding-top: unset;
     }
 }

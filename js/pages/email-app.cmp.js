@@ -7,33 +7,33 @@ export default {
     template: `
         <section class="email-app">
             <button @click="toggleSideNav" class="btn hamburger"></button>
-            <div v-if="isSideNav" @click="toggleSideNav" class="background click"></div>
+            <div v-if="isSideNav" @click="toggleSideNav" class="background nav click"></div>
             <nav class="side-nav" :class="isOpen">
                 <div @click="toggleSideNav" class="click icon close-nav"></div>
-                <router-link class="btn compose" :to="composePath">
+                <router-link  @click="toggleSideNav" class="btn compose" :to="composePath">
                     <div class="icon"></div>
                     Compose
                 </router-link>
-                <router-link class="inbox" :to="getPath('inbox')">
+                <router-link  @click="toggleSideNav" class="inbox" :to="getPath('inbox')">
                     <div class="icon"></div>
                     <div class="txt-container">
                         <span>Inbox</span>
                         <span>{{formattedNumOfUnread}}</span>
                     </div>
                 </router-link>
-                <router-link class="sent" :to="getPath('sent')">
+                <router-link  @click="toggleSideNav" class="sent" :to="getPath('sent')">
                     <div class="icon"></div>
                     <div class="sent">Sent</div>
                 </router-link>
-                <router-link class="starred" :to="getPath('starred')">
+                <router-link  @click="toggleSideNav" class="starred" :to="getPath('starred')">
                     <div class="icon"></div>
                     <div class="starred">Starred</div>
                 </router-link>
-                <router-link class="trash" :to="getPath('trash')">
+                <router-link  @click="toggleSideNav" class="trash" :to="getPath('trash')">
                     <div class="icon"></div>
                     <div class="trash">Trash</div>
                 </router-link>
-                <router-link class="draft" :to="getPath('draft')">
+                <router-link  @click="toggleSideNav" class="draft" :to="getPath('draft')">
                     <div class="icon"></div>
                     <div class="draft">draft</div>
                 </router-link>

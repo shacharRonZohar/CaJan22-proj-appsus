@@ -98,4 +98,8 @@
     .email-app .hamburger {
         display: none;
     }
+
+    .email-app .background.nav {
+        display: none;
+    }
 }
