@@ -15,7 +15,7 @@ export default {
             </div>
             <span class="sent-at">{{formattedTime}}</span>
             <div class="actions">
-                <div @click.stop="onRemove" class="icon delete click">D</div>
+                <div @click.stop="onRemove" class="icon delete click"></div>
             </div>
         </section>
     `,
