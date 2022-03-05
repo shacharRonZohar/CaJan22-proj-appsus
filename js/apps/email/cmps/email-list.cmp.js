@@ -3,12 +3,12 @@ import { emailService } from '../services/emailService.js'
 
 export default {
     props: ['emails'],
-    emits: ['read', 'removed', 'star'],
+    emits: ['read', 'removed', 'star','toggleRead'],
     template: `
         <section class="email-list">
             <ul>
                 <li class="email-article" v-for="email in emails" :key="email.id" >
-                    <email-preview @click.stop="onRead(email.id)" @star="onStar" @removed="onRemoved" :email="email"/>
+                    <email-preview @click.stop="onRead(email.id)" @star="onStar" @removed="onRemoved" @toggleRead="onToggleRead" :email="email"/>
                 </li>
             </ul>
         </section>
@@ -36,6 +36,9 @@ export default {
         },
         onStar(id) {
             this.$emit('star', id)
+        },
+        onToggleRead(id){
+            this.$emit('toggleRead',id)
         }
     },
     computed: {

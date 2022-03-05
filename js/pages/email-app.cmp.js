@@ -64,7 +64,7 @@ export default {
                 <div v-if="isFilter" class="filter-background" @click="toggleFilter"></div>
             </section>
             <div class="list-header"></div>
-            <router-view @removed="onRemoved" @star="onStar" @read="onRead" class="email-content" :emails="emails" />
+            <router-view @removed="onRemoved" @star="onStar" @read="onRead" @toggleRead="onToggleRead" class="email-content" :emails="emails" />
             <email-compose @sent="onSent" @close="closeCompose"  @draftSaved="loadEmails" v-if="isCompose"></email-compose>
         </section>
     `,
@@ -181,6 +181,11 @@ export default {
         onStar(emailId) {
             emailService.toggleStar(emailId)
                 .then(() => this.loadEmails())
+        },
+        onToggleRead(id){
+            emailService.get(id)
+            .then(emailService.toggleRead)
+            .then(this.loadEmails)
         }
     },
     computed: {

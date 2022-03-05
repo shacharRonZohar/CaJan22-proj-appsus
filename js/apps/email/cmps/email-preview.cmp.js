@@ -2,7 +2,7 @@ import { utilService } from '../../../services/utilService.js'
 
 export default {
     props: ['email'],
-    emits: ['removed', 'star'],
+    emits: ['removed', 'star','toggleRead'],
     template: `
         <section class="email-preview click" :class="isRead">
             <div  @click.stop="onStar" class="star icon click" :class="starState"></div>
@@ -15,6 +15,7 @@ export default {
             <span class="sent-at">{{formattedTime}}</span>
             <div class="actions">
                 <div @click.stop="onRemove" class="icon delete click"></div>
+                <div @click.stop="onToggleRead" class="icon click toggle-read" :class="isRead"></div>
             </div>
         </section>
     `,
@@ -37,8 +38,10 @@ export default {
             this.$emit('removed', this.email.id)
         },
         onStar() {
-            console.log('tes')
             this.$emit('star', this.email.id)
+        },
+        onToggleRead(){
+            this.$emit('toggleRead', this.email.id)
         }
     },
     computed: {
