@@ -14,13 +14,13 @@ export const noteService = {
     duplicateNote
 }
 
-function query({search, type}) {
+function query({ search, type }) {
     return storageService.query(NOTES_KEY)
         .then(notes => {
             const newNotes = notes.filter(note => {
                 const regex = new RegExp(search, 'i')
-                return (regex.test(note.info.title) || 
-                        regex.test(note.info.txt))
+                return (regex.test(note.info.title) ||
+                    regex.test(note.info.txt))
             })
             return newNotes
         })
@@ -87,7 +87,7 @@ function _createNotes() {
             isPinned: false,
             info: {
                 txt: 'Fullstack Me Baby!',
-                title: 'avocado',
+                title: 'Okay',
 
             },
             style: {
@@ -95,11 +95,35 @@ function _createNotes() {
             }
         },
         {
+            id: 'n150',
+            type: 'note-img',
+            isPinned: true,
+            info: {
+                url: './assets/imgs/note2.jpg',
+                title: ''
+            },
+            style: {
+                backgroundColor: 'lightgreen'
+            },
+
+        },
+        {
+            id: 'n113',
+            type: 'note-video',
+            isPinned: false,
+            info: {
+                url: 'https://www.youtube.com/watch?v=-BeG8baeAzQ'
+            },
+            style: {
+                backgroundColor: 'lightcyan'
+            }
+        },
+        {
             id: 'n102',
             type: 'note-img',
             isPinned: true,
             info: {
-                url: './assets/imgs/horse.jpg',
+                url: './assets/imgs/note1.jpg',
                 title: 'Bobi and Me'
             },
             style: {
@@ -109,14 +133,14 @@ function _createNotes() {
         },
         {
             id: 'n103',
-            type: 'note-todos',
-            isPinned: false,
+            type: 'note-txt',
+            isPinned: true,
             info: {
-                label: 'Get my stuff together',
-                todos: [
-                    { txt: 'Driving liscence', doneAt: null },
-                    { txt: 'Coding power', doneAt: 187111111 }
-                ]
+                title: 'Password',
+                txt: 'SpidermanRocksss'
+            },
+            style: {
+                backgroundColor: 'lightcyan'
             }
         },
         {
@@ -125,7 +149,23 @@ function _createNotes() {
             isPinned: false,
             info: {
                 url: 'https://www.youtube.com/watch?v=oLDqCbv0FBQ'
+            },
+            style: {
+                backgroundColor: 'lightgray'
             }
+        },
+        {
+            id: 'n151',
+            type: 'note-img',
+            isPinned: true,
+            info: {
+                url: './assets/imgs/note3.jpg',
+                title: ''
+            },
+            style: {
+                backgroundColor: 'lightgreen'
+            },
+
         },
         {
             id: 'n105',
@@ -133,6 +173,9 @@ function _createNotes() {
             isPinned: false,
             info: {
                 url: 'https://www.youtube.com/watch?v=C926N9zMJkU'
+            },
+            style: {
+                backgroundColor: 'lightcyan'
             }
         },
         {
@@ -142,7 +185,23 @@ function _createNotes() {
             info: {
                 txt: 'Fullstack Me Baby!',
                 title: 'Okay'
+            },
+            style: {
+                backgroundColor: 'lightblue'
             }
+        },
+        {
+            id: 'n152',
+            type: 'note-img',
+            isPinned: true,
+            info: {
+                url: './assets/imgs/note4.jpg',
+                title: ''
+            },
+            style: {
+                backgroundColor: 'lightgreen'
+            },
+
         },
         {
             id: 'n107',
@@ -164,6 +223,82 @@ function _createNotes() {
             isPinned: false,
             info: {
                 url: 'https://www.youtube.com/watch?v=uNT_AxXrUGs'
+            },
+            style: {
+                backgroundColor: 'lightpink'
+            }
+        },
+        {
+            id: 'n153',
+            type: 'note-img',
+            isPinned: true,
+            info: {
+                url: './assets/imgs/note5.jpg',
+                title: ''
+            },
+            style: {
+                backgroundColor: 'lightgreen'
+            },
+
+        },
+        {
+            id: 'n109',
+            type: 'note-video',
+            isPinned: false,
+            info: {
+                url: 'https://www.youtube.com/watch?v=9wO5TnYaJ4o'
+            }
+        },
+        {
+            id: 'n115',
+            type: 'note-txt',
+            isPinned: false,
+            info: {
+                txt: 'Fullstack Me Baby!',
+                title: 'Okay',
+
+            },
+            style: {
+                backgroundColor: 'lightcyan'
+            }
+        },
+        {
+            id: 'n111',
+            type: 'note-txt',
+            isPinned: true,
+            info: {
+                txt: 'להתארגן',
+                title: ''
+            }
+        },
+        {
+            id: 'n112',
+            type: 'note-video',
+            isPinned: false,
+            info: {
+                url: 'https://www.youtube.com/watch?v=WoKEdEy_g1A'
+            }
+        },
+        {
+            id: 'n110',
+            type: 'note-txt',
+            isPinned: true,
+            info: {
+                txt: 'Dont forget to do the thing',
+                title: 'Importent'
+            }
+        },
+        {
+            id: 'n114',
+            type: 'note-txt',
+            isPinned: false,
+            info: {
+                txt: 'Fullstack Me Baby!',
+                title: 'Okay',
+
+            },
+            style: {
+                backgroundColor: 'lightblue'
             }
         },
         ]
