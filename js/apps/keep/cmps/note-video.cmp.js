@@ -3,7 +3,6 @@ export default {
     template: `
          <section class="note-video">
             <iframe :src="formattedUrl" frameborder="0"></iframe>
-            <!-- <p class="txt">{{getNoteTxt}}</p> -->
         </section>
    `,
     data() {
