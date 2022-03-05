@@ -17,7 +17,14 @@ export default {
                     </small>
                 </div>
                 <span class="sent-at">{{formattedTime}}</span>
-                <span class="to">{{email.to.fullName}}</span>
+                <div class="to">
+                    <span class="name">
+                        {{email.to.fullName}}
+                    </span>
+                    <small class="email">
+                        &lt{{email.to.email}}&gt
+                    </small>
+                </div>
             </header>
             <pre class="email-body">{{email.body}}</pre>
         </section>

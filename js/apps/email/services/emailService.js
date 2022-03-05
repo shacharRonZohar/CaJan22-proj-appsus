@@ -18,13 +18,8 @@ export const emailService = {
 const EMAIL_KEY = 'mailDB'
 
 const loggedInUser = {
-    email: 'user@appsus.com',
-    fullName: 'Nestor Appsus'
-}
-
-const otherUser = {
-    email: 'momo@momo.com',
-    fullName: 'Mister Momo'
+    email: 'Shachar@Adam.js',
+    fullName: 'Shachar Perlin'
 }
 
 _createEmails()
@@ -48,7 +43,8 @@ function query(criteria) {
         .then(emails => {
             // Sort
             if (!criteria.sort) return emails
-            const sortType = criteria.sortBy === 'title' ? '' : 1
+            console.log(criteria.sort.by)
+            const sortType = criteria.sort.by === 'subject' ? 'string' : 1
             return emails.autoSortObj(criteria.sort.by, sortType, criteria.sort.isAsc)
         })
 }
@@ -136,28 +132,213 @@ function _createEmails() {
     // Temporary!
     let emails = utilService.load(EMAIL_KEY) || []
     if (!emails || !emails.length) {
-        emails.push(..._getDemoEmails(true))
-        emails.push(..._getDemoEmails(false))
+        for (let i = 0; i < 5; i++) {
+            emails.push(..._getDemoRecievedEmails())
+            emails.push(..._getDemoSentEmails())
+        }
     }
     utilService.save(EMAIL_KEY, emails)
 }
 
-function _getDemoEmails(isRecieved) {
-    let emails = []
-    for (let i = 0; i < 10; i++) {
-        let email = {
+function _getDemoRecievedEmails() {
+    const yaronUser = {
+        email: 'yaronBiton@Walid.com',
+        fullName: 'Yaron Biton'
+    }
+    return [
+        {
+            id: utilService.makeExtId(),
+            subject: 'Missing Notice!',
+            body: 'Has anyone seen joy?',
+            isRead: 'unread',
+            sentAt: 1643536810000,
+            to: loggedInUser,
+            from: yaronUser,
+            isStar: true,
+            removedAt: null,
+            status: 'inbox'
+        },
+        {
+            id: utilService.makeExtId(),
+            subject: 'UI notes',
+            body: 'I DON\'T WANT TO SEE THAT SHIT IN 10 MINUTES',
+            isRead: 'read',
+            sentAt: 1646128810000,
+            to: loggedInUser,
+            from: {
+                email: 'RotemBublil@CodingAcademy.puki',
+                fullName: 'Rotem Bublil'
+            },
+            isStar: false,
+            removedAt: null,
+            status: 'inbox'
+        }, {
+            id: utilService.makeExtId(),
+            subject: 'Lidor\'s Credit Card',
+            body: `Hello my friend!
+            Here is Lidors credit card info as requested:
+            1337-420-6969`,
+            isRead: 'unread',
+            sentAt: Date.now(),
+            to: loggedInUser,
+            from: {
+                email: 'prince@nigeria.scam',
+                fullName: 'Nigerian Prince'
+            },
+            isStar: false,
+            removedAt: null,
+            status: 'inbox'
+        }, {
+            id: utilService.makeExtId(),
+            subject: 'Project Status',
+            body: 'CAN I SEND AN EMAIL TO MY AUNT ALREADY???',
+            isRead: 'unread',
+            sentAt: Date.now(),
+            to: loggedInUser,
+            from: yaronUser,
+            isStar: false,
+            removedAt: null,
+            status: 'inbox'
+        }, {
+            id: utilService.makeExtId(),
+            subject: 'Sprint 3 answers',
+            body:
+                `Hey guys!
+             Here are the answers to sprint no. 3, make sure to upload them
+             so the other students don't suspect you are metargelim`,
+            isRead: 'read',
+            sentAt: 1646128810000,
+            to: loggedInUser,
+            from: {
+                email: 'matan@crispel.net',
+                fullName: 'Matan Crispel'
+            },
+            isStar: false,
+            removedAt: null,
+            status: 'inbox'
+        }, {
             id: utilService.makeExtId(),
             subject: 'Miss you!',
             body: 'Would love to catch up sometimes',
-            isRead: isRecieved ? 'unread' : 'read',
-            sentAt: Math.random() > 0.5 ? Date.now() : 1646229756255,
-            to: isRecieved ? loggedInUser : otherUser,
-            from: isRecieved ? otherUser : loggedInUser,
-            isStar: false,
-            removedAt: null
-        }
-        email = _setStatus(email)
-        emails.push(email)
+            isRead: 'read',
+            sentAt: Date.now(),
+            to: loggedInUser,
+            from: {
+                email: 'zendaya@hollywood.crime',
+                fullName: 'Zendaya'
+            },
+            isStar: true,
+            removedAt: null,
+            status: 'inbox'
+        }, {
+            id: utilService.makeExtId(),
+            subject: 'You are my heroes!',
+            body:
+                `Thank you for building us a site!
+            You are truly helping the war efforts, 
+            contributing something to the world by building this app`,
+            isRead: 'read',
+            sentAt: Date.now(),
+            to: loggedInUser,
+            from: {
+                email: 'vladimir@zelensky.ru',
+                fullName: 'Vladimir Zelensky'
+            },
+            isStar: true,
+            removedAt: null,
+            status: 'inbox'
+        },
+    ]
+}
+
+
+function _getDemoSentEmails() {
+    const yaronUser = {
+        email: 'yaronBiton@Walid.com',
+        fullName: 'Yaron Biton'
     }
-    return emails
+    return [
+        {
+            id: utilService.makeExtId(),
+            subject: 'Delivery',
+            body: 'When are you coming bro?',
+            isRead: 'read',
+            sentAt: 1643536810000,
+            to: {
+                email: 'MrBachur@plants.drugs',
+                fullName: 'Mar Bachur'
+            },
+            from: loggedInUser,
+            isStar: false,
+            removedAt: null,
+            status: 'sent'
+        },
+        {
+            id: utilService.makeExtId(),
+            subject: 'Missing Payment',
+            body:
+                `Hey bill!
+            We haven't recieved the latest payment for creating DOS.
+            We understand you like screwing people over, but don't go with us,
+            we will duplicate the code all over the application,
+            and make it die slowly with pain!`,
+            isRead: 'read',
+            sentAt: 1646128810000,
+            to: {
+                email: 'billGates@yahoo.com',
+                fullName: 'Bill the Steal'
+            },
+            from: loggedInUser,
+            isStar: false,
+            removedAt: null,
+            status: 'sent'
+        }, {
+            id: utilService.makeExtId(),
+            subject: 'Lidor\'s Credit Card',
+            body: `Hello my friend!
+            Here is Lidors credit card info as requested:
+            1337-420-6969`,
+            isRead: 'read',
+            sentAt: Date.now(),
+            to: {
+                email: 'prince@nigeria.scam',
+                fullName: 'Nigerian Prince'
+            },
+            from: loggedInUser,
+            isStar: false,
+            removedAt: null,
+            status: 'sent'
+        }, {
+            id: utilService.makeExtId(),
+            subject: 'Project Status',
+            body: 'CAN I SEND AN EMAIL TO MY AUNT ALREADY???',
+            isRead: 'read',
+            sentAt: Date.now(),
+            to: {
+                email: 'randomGuy@fiverr.pay',
+                fullName: 'Fiverr Fullstack dev'
+            },
+            from: loggedInUser,
+            isStar: true,
+            removedAt: null,
+            status: 'sent'
+        }, {
+            id: utilService.makeExtId(),
+            subject: 'Reavealing Secrets',
+            body:
+                `Hey matan!
+             Looks like the students caught on to us being the shutluim in
+             the kvutzat whatsapp, what should we do?`,
+            isRead: 'read',
+            sentAt: 1646128810000,
+            to: {
+                email: 'matan@crispel.net',
+                fullName: 'Matan Crispel'
+            },
+            from: loggedInUser,
+            isStar: false,
+            removedAt: null,
+            status: 'sent'
+        }
+    ]
 }

@@ -70,10 +70,14 @@ Array.prototype.autoSortObj = function (objKey, sortType, isAsc) {
 	// sortType = the type of value expected to be in the specified key
 	// isAsc = the order to sort the elements by, 1 = ascending, -1 = descending
 	const sortDir = isAsc ? 1 : -1
-	if (typeof sortType === 'string')
+	if (typeof sortType === 'string') {
+		console.log(objKey)
+		console.log(sortType)
+		console.log(this[0][objKey])
 		return this.sort(
-			(a, b) => a[objKey].toUpperCase().localeCompare(b[objKey].toUpperCase()) * sortDir
+			(a, b) => (a[objKey].toUpperCase().localeCompare(b[objKey].toUpperCase())) * sortDir
 		)
+	}
 	else if (typeof sortType === 'number') return this.sort((a, b) => (a[objKey] - b[objKey]) * sortDir)
 }
 
