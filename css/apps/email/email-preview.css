@@ -1,6 +1,8 @@
 .email-preview {
     display: grid;
     grid-template-columns: 1fr 1fr 3fr 7fr 2fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: 'select star name txt sent-at';
     width: 100%;
     height: 40px;
     align-items: center;
@@ -17,6 +19,7 @@
 .email-preview .sent-at {
     justify-self: flex-end;
     margin-right: 5px;
+    grid-area: sent-at;
 }
 
 .email-article:first-child .email-preview {
@@ -34,11 +37,16 @@
 
 .email-preview .star.icon {
     background-image: url(../../../assets/icons/star.svg);
+    grid-area: star;
 }
 
-/* .email-preview .name-txt {
-    width: 170px;
-} */
+.email-preview .star.icon.active {
+    background-image: url(../../../assets/icons/star-active.svg);
+}
+
+.email-preview .name-txt {
+    grid-area: name;
+}
 
 .email-preview:not(.read) {
     font-family: roboto-b, sans-serif;
@@ -49,9 +57,10 @@
     right: 20px;
 } */
 
-/* .email-preview .txt-container {
-    max-width: 620px;
-} */
+.email-preview .txt-container {
+    grid-area: txt;
+}
+
 
 .email-preview .txt-container,
 .email-preview .subject,
@@ -59,4 +68,22 @@
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+}
+
+.email-preview .actions {
+    display: none;
+    grid-area: sent-at;
+    /* justify-self: flex-end; */
+    width: 99%;
+    background-color: inherit;
+    z-index: 5;
+    background-color: var(--clr1);
+}
+
+.email-preview:hover .actions {
+    display: initial;
+}
+
+.email-preview .actions .delete.icon {
+    background-image: url('./../../../assets/icons/delete.svg');
 }

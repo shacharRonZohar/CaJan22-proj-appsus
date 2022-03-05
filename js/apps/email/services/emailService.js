@@ -9,6 +9,7 @@ export const emailService = {
     query,
     remove,
     postMany,
+    toggleStar,
     toggleRead,
     getNewEmail,
     getNumOfUnread,
@@ -33,6 +34,7 @@ function query(criteria) {
         .then(emails => {
             // Filter
             return emails.filter(email => {
+                if (criteria.status === 'starred') return email.isStar
                 let isMatch = (criteria.status === email.status) &&
                     email.body.toLowerCase().includes(criteria.txt.toLowerCase())
                 if (criteria.isRead && isMatch) {
@@ -82,7 +84,8 @@ function getNewEmail() {
         body: '',
         sentAt: null,
         to: {},
-        from: {}
+        from: {},
+        isStar: false
     })
 }
 
@@ -96,6 +99,17 @@ function toggleRead(email) {
     // email.isRead = !email.isRead
     return put(email)
 }
+
+function toggleStar(id) {
+    return get(id)
+        .then(email => {
+            email.isStar = !email.isStar
+            console.log(email)
+            return put(email)
+        }
+        )
+}
+
 function _setStatus(email) {
     let status
     if (email.to.email === loggedInUser.email) status = 'inbox'
@@ -127,7 +141,8 @@ function _getDemoEmails(isRecieved) {
             isRead: isRecieved ? 'unread' : 'read',
             sentAt: Math.random() > 0.5 ? Date.now() : 1646229756255,
             to: isRecieved ? loggedInUser : otherUser,
-            from: isRecieved ? otherUser : loggedInUser
+            from: isRecieved ? otherUser : loggedInUser,
+            isStar: false
         }
         console.log(email)
         email = _setStatus(email)

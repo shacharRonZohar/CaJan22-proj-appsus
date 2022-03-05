@@ -2,11 +2,11 @@ import { utilService } from '../../../services/utilService.js'
 
 export default {
     props: ['email'],
-    emits: ['removed'],
+    emits: ['removed', 'star'],
     template: `
         <section class="email-preview click" :class="isRead">
             <input @click.stop type="checkbox" class="select-email" />
-            <div  @click.stop class="star icon click"></div>
+            <div  @click.stop="onStar" class="star icon click" :class="starState"></div>
             <span class="name-txt">{{email.from.fullName}}</span>
             <div class="txt-container">
                 <span class="subject">{{subjectTxt}}</span>
@@ -15,7 +15,7 @@ export default {
             </div>
             <span class="sent-at">{{formattedTime}}</span>
             <div class="actions">
-                <div @click.stop="onRemove" class="icon delete click">D</div>
+                <div @click.stop="onRemove" class="icon delete click"></div>
             </div>
         </section>
     `,
@@ -36,6 +36,10 @@ export default {
     methods: {
         onRemove() {
             this.$emit('removed', this.email.id)
+        },
+        onStar() {
+            console.log('tes')
+            this.$emit('star', this.email.id)
         }
     },
     computed: {
@@ -58,6 +62,11 @@ export default {
                 }
             }
             return utilService.formatTime(this.email.sentAt, opts)
+        },
+        starState() {
+            return {
+                'active': this.email.isStar
+            }
         }
     },
 }
