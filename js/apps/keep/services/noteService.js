@@ -1,34 +1,22 @@
 import { utilService } from '../../../services/utilService.js'
 import { storageService } from '../../../services/asyncStorage.js'
 
-const NOTES_KEY = 'keeps'
+const NOTES_KEY = 'keepDB'
 _createNotes()
 
 export const noteService = {
     query,
+    get,
     remove,
     addNote,
-    getEmptyNote
+    getEmptyNote,
+    pinNote,
+    duplicateNote
 }
-
-// export const typeService= {
-//     getNoteTypes()
-// }
-
-// function getNoteTypes(){
-//     const types = {
-//         cmps:[
-//             {
-//                 type: 'note-txt',
-
-//             }
-//         ]
-//     }
-//     return Promise.resolve()
-// }
 
 function query() {
     return storageService.query(NOTES_KEY)
+        .then(notes => notes.autoSortObj('isPinned', 1, false))
 }
 
 function remove(noteId) {
@@ -37,6 +25,30 @@ function remove(noteId) {
 
 function get(noteId) {
     return storageService.get(NOTES_KEY, noteId)
+}
+function put(updatedNote) {
+    return storageService.put(NOTES_KEY, updatedNote)
+}
+
+function duplicateNote(note) {
+    return get(note.id)
+        .then(note => {
+            const clone = JSON.parse(JSON.stringify(note))
+            clone.isPinned = false
+            storageService.post(NOTES_KEY, clone)
+        })
+    // const clone = JSON.parse(JSON.stringify(note))
+    // clone.isPinned = false
+    // storageService.post(NOTES_KEY, clone)
+    // return clone
+}
+
+function pinNote(noteId) {
+    return get(noteId)
+        .then(note => {
+            note.isPinned = true
+            put(note)
+        })
 }
 
 function addNote(note) {
@@ -63,91 +75,94 @@ function getEmptyNote(noteType) {
     return Promise.resolve(newNote)
 }
 
-// function _getFromYoutube(searchTerm){
-
-// }
 function _createNotes() {
     let notes = utilService.load(NOTES_KEY)
     if (!notes || !notes.length) {
         notes = [{
             id: 'n101',
             type: 'note-txt',
-            isPinned: true,
+            isPinned: false,
             info: {
                 txt: 'Fullstack Me Baby!',
                 title: 'avocado',
-                
+
             },
             style: {
-                backgroundColor: 'red'
+                backgroundColor: 'lightblue'
             }
         },
         {
             id: 'n102',
             type: 'note-img',
+            isPinned: true,
             info: {
                 url: './assets/imgs/horse.jpg',
                 title: 'Bobi and Me'
             },
             style: {
-                backgroundColor: '#00d'
+                backgroundColor: 'lightgreen'
             },
 
         },
-        {
-            id: 'n103',
-            type: 'note-todos',
-            info: {
-                label: 'Get my stuff together',
-                todos: [
-                    { txt: 'Driving liscence', doneAt: null },
-                    { txt: 'Coding power', doneAt: 187111111 }
-                ]
-            }
-        },
-        {
-            id: 'n104',
-            type: 'note-video',
-            info: {
-                url: 'https://www.youtube.com/watch?v=oLDqCbv0FBQ'
-            }
-        },
-        {
-            id: 'n105',
-            type: 'note-video',
-            info: {
-                url: 'https://www.youtube.com/watch?v=C926N9zMJkU'
-            }
-        },
-        {
-            id: 'n106',
-            type: 'note-txt',
-            isPinned: true,
-            info: {
-                txt: 'Fullstack Me Baby!',
-                title: 'Okay'
-            }
-        },
-        {
-            id: 'n107',
-            type: 'note-img',
-            info: {
-                url: './assets/imgs/horse.jpg',
-                title: 'Bojack Horseman',
-                
-            },
-            style: {
-                backgroundColor: '#00d'
-            }
+        // {
+        //     id: 'n103',
+        //     type: 'note-todos',
+        //     isPinned: false,
+        //     info: {
+        //         label: 'Get my stuff together',
+        //         todos: [
+        //             { txt: 'Driving liscence', doneAt: null },
+        //             { txt: 'Coding power', doneAt: 187111111 }
+        //         ]
+        //     }
+        // },
+        // {
+        //     id: 'n104',
+        //     type: 'note-video',
+        //     isPinned: false,
+        //     info: {
+        //         url: 'https://www.youtube.com/watch?v=oLDqCbv0FBQ'
+        //     }
+        // },
+        // {
+        //     id: 'n105',
+        //     type: 'note-video',
+        //     isPinned: false,
+        //     info: {
+        //         url: 'https://www.youtube.com/watch?v=C926N9zMJkU'
+        //     }
+        // },
+        // {
+        //     id: 'n106',
+        //     type: 'note-txt',
+        //     isPinned: true,
+        //     info: {
+        //         txt: 'Fullstack Me Baby!',
+        //         title: 'Okay'
+        //     }
+        // },
+        // {
+        //     id: 'n107',
+        //     type: 'note-img',
+        //     isPinned: false,
+        //     info: {
+        //         url: './assets/imgs/horse.jpg',
+        //         title: 'Bojack Horseman',
 
-        },
-        {
-            id: 'n108',
-            type: 'note-video',
-            info: {
-                url: 'https://www.youtube.com/watch?v=uNT_AxXrUGs'
-            }
-        },
+        //     },
+        //     style: {
+        //         backgroundColor: 'lightgreen'
+        //     }
+
+        // },
+        // {
+        //     id: 'n108',
+        //     type: 'note-video',
+        //     isPinned: false,
+        //     info: {
+        //         url: 'https://www.youtube.com/watch?v=uNT_AxXrUGs'
+        //     }
+        // },
         ]
         utilService.save(NOTES_KEY, notes)
     }

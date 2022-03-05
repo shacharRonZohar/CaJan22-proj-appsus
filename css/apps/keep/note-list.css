@@ -5,6 +5,8 @@
 }
 
 .note-list .note {
+    break-inside: avoid-column;
+    margin-bottom: 20px;
     height: fit-content;
     border: 1px solid var(--clr8);
     border-radius: 10px;
@@ -15,14 +17,6 @@
     overflow-wrap: break-word;
 }
 
-/* .note-img .img-container {
-    width: 10%;
-} */
-
-/* iframe {
-    width: 238px;
-} */
-
 .note-list .note:hover {
     box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%),
                 0 1px 3px 1px rgb(60 64 67 / 15%);
@@ -32,6 +26,18 @@
     cursor: pointer;
     background-image: url(../../../assets/icons/delete.svg);
     border: none;
-    background-color: var(--clr1);
     margin-top: 15px;
+}
+
+.note-list .note .pin-btn {
+    background-image: url(../../../assets/icons/pin.svg);
+    border: none;
+    margin-top: 15px;
+}
+
+.note-list .note .duplicate-btn {
+    background-image: url(../../../assets/icons/duplicate.svg);
+    border: none;
+    margin-top: 15px;
+
 }

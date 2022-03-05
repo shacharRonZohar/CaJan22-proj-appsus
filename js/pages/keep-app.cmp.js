@@ -5,15 +5,17 @@ import noteAdd from '../apps/keep/cmps/note-add.cmp.js'
 import typeTxt from '../apps/keep/cmps/type-txt.cmp.js'
 import typeImg from '../apps/keep/cmps/type-img.cmp.js'
 import typeVideo from '../apps/keep/cmps/type-video.cmp.js'
+import notesFilter from '../apps/keep/cmps/notes-filter.cmp.js'
 
 export default {
     template: `
         <section class="keep-app">
+                <notes-filter></notes-filter>
                 <note-add v-if="!isAddingNote" @addRequest="onAddRequest" class="note-add"></note-add>
                 <component v-else :is="selectedType" @noteAdded="addNote"></component>
                 <input type="color" name="background-color" id="background-color" v-model="selectedColor.backgroundColor">
                 <!-- <router-view :notes="notes"></router-view> -->
-                <note-list class="note-list" :notes="notes"></note-list>
+                <note-list class="note-list" @notePinned="updateNotes" @noteDuplicate="updateNotes" :notes="notes"></note-list>
         </section>
     `,
     components: {
@@ -21,7 +23,8 @@ export default {
         noteAdd,
         typeTxt,
         typeImg,
-        typeVideo
+        typeVideo,
+        notesFilter
     },
     data() {
         return {
@@ -30,6 +33,10 @@ export default {
             selectedType: null,
             selectedColor: {
                 backgroundColor:null
+            },
+            filterBy: {
+                search: null,
+                type: null
             }
         }
     },
