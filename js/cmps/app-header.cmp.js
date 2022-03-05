@@ -9,7 +9,6 @@ export default {
                 <router-link to="/keep">Keep</router-link>
                 <router-link to="/email/inbox">Email</router-link>
             </nav>
-            <div class="line"></div>
         </header>
     `,
     components: {
