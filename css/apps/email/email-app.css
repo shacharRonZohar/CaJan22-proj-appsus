@@ -1,6 +1,4 @@
 .email-app {
-    /* grid-column: 3 / span 27; */
-    /* margin-right: 10px; */
     display: grid;
     grid-template: repeat(31, 1fr) / repeat(31, 1fr);
 }
@@ -25,7 +23,6 @@
 
 .email-app .email-search-container .email-search-form>* {
     background-color: inherit;
-    /* flex-grow: 1; */
 }
 
 .email-app .email-search-container .email-search-form .email-search {
@@ -36,16 +33,12 @@
     -webkit-appearance: none;
     height: 20px;
     width: 20px;
-    /* background: red; */
     cursor: pointer;
     background-image: url(../../../assets/icons/close.svg);
-    /* Will place small red box on the right of input (positioning carries over) */
-
 }
 
 .email-app .email-search-container .icon.search {
     background-image: url(../../../assets/icons/search.svg);
-    /* background-color: inherit; */
 }
 
 .email-app .email-search-container .icon.filter {
@@ -53,7 +46,6 @@
     background-image: url(../../../assets/icons/filter.svg);
     flex-grow: 1;
     cursor: pointer;
-    /* background-color: inherit; */
 }
 
 .email-app .email-search-container .filter-container {
@@ -101,8 +93,6 @@
     background-image: url(../../../assets/icons/hamburger.svg);
     min-width: 28px;
 }
-
-.email-app .hamburger .background {}
 
 @media (min-width:770px) {
     .email-app .hamburger {

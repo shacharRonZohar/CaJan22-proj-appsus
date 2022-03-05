@@ -48,11 +48,6 @@
     font-family: roboto-b, sans-serif;
 }
 
-/* .email-preview .sent-at {
-    position: absolute;
-    right: 20px;
-} */
-
 .email-preview .txt-container {
     grid-area: txt;
 }
@@ -69,9 +64,7 @@
 .email-preview .actions {
     display: none;
     grid-area: sent-at;
-    /* justify-self: flex-end; */
     width: 99%;
-
     z-index: 5;
     background-color: var(--clr1);
 }
@@ -103,6 +96,5 @@
         grid-template-columns: 1fr 3fr 7fr 2fr;
         grid-template-rows: 1fr;
         grid-template-areas: 'star name txt sent-at';
-        /* min-width: none; */
     }
 }

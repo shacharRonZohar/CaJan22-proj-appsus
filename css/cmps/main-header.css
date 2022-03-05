@@ -6,19 +6,8 @@
     border-bottom: 1px solid var(--clr2);
 }
 
-/* .main-header .line {
-    width: 100vw;
-    position: absolute;
-    height: 1px;
-    border-bottom: 1px solid var(--clr2);
-    top: 72px;
-    left: 0;
-} */
-
 .main-header nav {
-    /* text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6); */
     display: flex;
-    /* gap: 50px; */
     font-size: 1.7rem;
     color: gray;
     height: 100%;
@@ -41,7 +30,6 @@
     background-repeat: no-repeat;
     height: 65px;
     width: 80px;
-    /* width: 100%; */
 }
 
 .main-header a:not(.logo):hover {

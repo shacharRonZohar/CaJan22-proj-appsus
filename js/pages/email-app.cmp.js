@@ -80,8 +80,7 @@ export default {
             criteria: {
                 status: 'inbox',
                 txt: '',
-                isStared: false, // (optional property, if missing: show all) 
-                lables: ['important', 'romantic'], // has any of the labels 
+                isStared: false, 
                 sort: {
                     by: 'title',
                     isAsc: false
@@ -117,12 +116,9 @@ export default {
         },
         'emails': {
             handler() {
-                // console.log(this.emails)
-                // console.log(oldValue, newValue)
                 if (!this.emails) return
                 emailService.getNumOfUnread()
                     .then(numOfUnread => this.numOfUnread = numOfUnread)
-                // = this.emails.filter()
             },
             deep: true,
             immediate: true,
@@ -165,7 +161,6 @@ export default {
             this.closeCompose()
         },
         onRemoved(id) {
-            // console.log(id, 'App')
             emailService.handleRemove(id)
                 .then(() => this.loadEmails())
         },

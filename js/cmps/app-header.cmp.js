@@ -1,6 +1,4 @@
 export default {
-    props: [''],
-    emits: [''],
     template: `
         <header class="main-header  main-layout">
             <router-link to="/" class="logo"></router-link>
@@ -11,25 +9,4 @@ export default {
             </nav>
         </header>
     `,
-    components: {
-
-    },
-    data() {
-        return {
-
-        }
-    },
-    created() {
-
-    },
-    unmounted() {
-
-    },
-
-    methods: {
-
-    },
-    computed: {
-
-    },
 }

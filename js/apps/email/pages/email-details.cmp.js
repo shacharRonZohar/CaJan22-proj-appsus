@@ -1,10 +1,8 @@
-// import emailAppCmp from "../../../pages/email-app.cmp"
 import { utilService } from '../../../services/utilService.js'
 import { emailService } from '../services/emailService.js'
 
 export default {
     props: ['emails'],
-    emits: [''],
     template: `
         <section v-if="email" class="email-details">
             <header class="email-header">
@@ -23,9 +21,6 @@ export default {
             <pre class="email-body">{{email.body}}</pre>
         </section>
     `,
-    components: {
-
-    },
     data() {
         return {
             email: null
@@ -33,9 +28,6 @@ export default {
     },
     created() {
         this.loadEmail()
-    },
-    unmounted() {
-
     },
     methods: {
         loadEmail() {

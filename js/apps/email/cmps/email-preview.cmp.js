@@ -19,20 +19,6 @@ export default {
             </div>
         </section>
     `,
-    components: {
-    },
-    data() {
-        return {
-
-        }
-    },
-    created() {
-
-    },
-    unmounted() {
-
-    },
-
     methods: {
         onRemove() {
             this.$emit('removed', this.email.id)

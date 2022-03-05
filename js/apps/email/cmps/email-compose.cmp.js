@@ -1,7 +1,6 @@
 import { emailService } from "../services/emailService.js"
 
 export default {
-    props: [''],
     emits: ['close', 'sent', 'draftSaved'],
     template: `
             <section class="email-compose">
@@ -30,9 +29,6 @@ export default {
                 </form>
             </section>
     `,
-    components: {
-
-    },
     data() {
         return {
             newEmail: null,
@@ -40,7 +36,7 @@ export default {
         }
     },
     created() {
-        console.log(this.$route.params)
+        // Gross
         if (this.$route.params.emailId) {
             emailService.get(this.$route.params.emailId)
                 .then(newEmail => this.newEmail = newEmail)
@@ -52,10 +48,8 @@ export default {
     unmounted() {
         clearInterval(this.interval)
     },
-
     methods: {
         sendEmail() {
-            console.log(this.newEmail)
             emailService.send(this.newEmail)
                 .then(() => this.$emit('sent'))
 
@@ -81,8 +75,5 @@ export default {
                 })
                 .then(() => this.$emit('draftSaved'))
         }
-    },
-    computed: {
-
     },
 }

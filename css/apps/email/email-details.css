@@ -8,7 +8,6 @@
     border-bottom: 1px solid var(--clr2);
     display: flex;
     justify-content: space-between;
-    /* align-items: center; */
     flex-direction: column;
 }
 
