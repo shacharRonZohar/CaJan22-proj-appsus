@@ -60,7 +60,7 @@ export default {
                         <option value="unread">Unread</option>
                     </select>
                     <div class="set-sort-container">
-                        <div @click.stop="onSetSort('title')" :class="activeTitle" class="click">Title</div>
+                        <div @click.stop="onSetSort('subject')" :class="activeSubject" class="click">Subject</div>
                         <div @click.stop="onSetSort('sentAt')" :class="activeDate" class="click">Date</div>
                     </div>
                 </div>
@@ -80,9 +80,9 @@ export default {
             criteria: {
                 status: 'inbox',
                 txt: '',
-                isStared: false, 
+                isStared: false,
                 sort: {
-                    by: 'title',
+                    by: 'subject',
                     isAsc: false
                 },
                 isRead: 'all'
@@ -167,6 +167,7 @@ export default {
         onSetSort(sortBy) {
             if (this.criteria.sort.by === sortBy) this.criteria.sort.isAsc = !this.criteria.sort.isAsc
             this.criteria.sort.by = sortBy
+            console.log(sortBy)
             this.loadEmails()
         },
         onSetSearch() {
@@ -180,12 +181,12 @@ export default {
             emailService.toggleStar(emailId)
                 .then(() => this.loadEmails())
         },
-        onToggleRead(id){
+        onToggleRead(id) {
             emailService.get(id)
-            .then(emailService.toggleRead)
-            .then(this.loadEmails)
+                .then(emailService.toggleRead)
+                .then(this.loadEmails)
         },
-        toggleSideNav(){
+        toggleSideNav() {
             this.isSideNav = !this.isSideNav
         }
     },
@@ -197,14 +198,14 @@ export default {
         formattedNumOfUnread() {
             return this.numOfUnread ? this.numOfUnread : ''
         },
-        activeTitle() {
-            return { active: this.criteria.sort.by === 'title' }
+        activeSubject() {
+            return { active: this.criteria.sort.by === 'subject' }
         },
         activeDate() {
             return { active: this.criteria.sort.by === 'sentAt' }
         },
-        isOpen(){
-            return {'open': this.isSideNav}
+        isOpen() {
+            return { 'open': this.isSideNav }
         }
 
     },
