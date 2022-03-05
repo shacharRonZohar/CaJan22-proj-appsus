@@ -1,8 +1,9 @@
 export default {
     props: [],
-    emits: ['filtered'],
+    emits: ['filtered', 'closeSearch'],
     template: `
         <section class="notes-filter">
+            <button @click="$emit('closeSearch')" class="back-btn btn icon"></button>
             <div class="filter">
                 <form @submit.prevent="setFilter">
                     <input v-model="filterBy.search" type="text" placeholder="Search..."> <br>

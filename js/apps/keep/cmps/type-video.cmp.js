@@ -1,5 +1,6 @@
 export default {
     props: [],
+    emits: ['noteAdded', 'closeWrite'],
     template: `
         <section class="note-write">
             <div class="write">
@@ -11,7 +12,7 @@ export default {
                 <div class="color-picker icon">
                     <input type="color" v-model="noteData.style.backgroundColor">
                 </div>
-                <button class="close-btn btn">Close</button>
+                <button @click="$emit('closeWrite')" class="close-btn btn">Close</button>
             </div>
 
         </section>

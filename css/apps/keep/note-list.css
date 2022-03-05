@@ -3,6 +3,7 @@
     column-count: 4;
     column-width: 238px;
     margin: 0 30px;
+    padding-bottom: 10px;
 }
 
 .note-list .note {
@@ -16,6 +17,12 @@
 }
 .note .note-txt .txt {
     overflow-wrap: break-word;
+}
+
+.note-list button {
+    background-color: inherit;
+    margin-inline-end: 10px;
+    cursor: pointer;
 }
 
 .note-list .note:hover {

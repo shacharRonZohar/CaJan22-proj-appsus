@@ -12,7 +12,7 @@ export default {
         <section class="keep-app">
                 <note-add v-if="!isAddingNote" @addRequest="onAddRequest" @filterRequest="onFilterRequest" class="note-add"></note-add>
                 <!-- Adding a note and a filter components -->
-                <component v-else :is="selectedType" @noteAdded="addNote" @filtered="setFilter"></component>
+                <component v-else :is="selectedType" @noteAdded="addNote" @filtered="setFilter" @closeWrite="isAddingNote = false" @closeSearch="isAddingNote = false"></component>
                 <!-- <input type="color" name="background-color" id="background-color" v-model="selectedColor.backgroundColor"> -->
                 <note-list class="note-list" @notePinned="updateNotes" @noteDuplicate="updateNotes" :notes="notes"></note-list>
         </section>

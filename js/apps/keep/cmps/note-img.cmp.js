@@ -8,15 +8,4 @@ export default {
             <div class="title">{{info.title}}</div>
         </section>
    `,
-   data(){
-   return {
-   }
-   },
-   methods: {
-   
-   },
-   computed: {
-   },
-   created(){
-   }
 }
